@@ -137,9 +137,10 @@ alias ryns='sftp -i ~/Documents/Misc/SSH/privateDroplets -P 9669 ant@ryn.itgr.uk
 alias starwars='telnet towel.blinkenlights.nl'
 
 alias dc='sudo killall openvpn'
-alias rc='sudo openvpn --config /etc/openvpn/UltraHorizon-EC-Auth.conf --log /var/log/openvpn.log &'
+alias rc='sudo openvpn --config ~/.openvpn/UltraHorizon.ovpn --log /var/log/openvpn.log &'
 
-alias fix-monitors='xrandr --output eDP-1 --auto --output DP-1 --off'
+alias monitor-fix='xrandr --output eDP-1 --auto --output DP-1 --off'
+alias monitor-1080p-above='xrandr --fb 3200x3420 --output eDP-1 --mode 3200x1800 --pos 0x1620 --scale 1x1 --output DP-1 --mode 1920x1080 --pos 160x0 --scale-from 2880x1620'
 
 #####
 
