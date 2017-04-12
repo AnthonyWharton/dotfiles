@@ -76,6 +76,9 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+# Stop zsh from sharing history
+setopt no_share_history
+
 # Custom end of line marker (if no new line at end of output it will write \n and add one)
 setopt PROMPT_CR
 setopt PROMPT_SP
