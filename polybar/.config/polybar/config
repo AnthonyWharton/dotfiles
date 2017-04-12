@@ -1,0 +1,319 @@
+;=============================================================================;
+
+[colors]
+background     = #222222
+background-alt = #2f343f
+foreground     = #f3f4f5
+foreground-alt = #222222
+primary        = #7fb800
+inactive       = #3e3e3e
+alert-low      = #f9c22e
+alert-med      = #f15946
+alert-high     = #e01a4f
+
+;=============================================================================;
+
+[bar/main]
+width = 100%
+height = 56
+monitor = eDP-1
+
+;separator = |
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+overline-size = 3
+overline-color = ${colors.primary}
+underline-size = 3 
+underline-color = ${colors.primary}
+
+border-bottom = 0
+border-bottom-color = ${colors.background-alt}
+
+padding-left = 0
+padding-right = 1
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = SauceCodePro Nerd Font:style=Regular:pixelsize=26;0
+
+modules-left = i3 xwindow
+modules-center = 
+modules-right = backlight volume cpu memory wlan eth battery date powermenu
+
+tray-position = right
+tray-padding = 1
+tray-maxsize = 64
+
+wm-restack = i3
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+;=============================================================================;
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:70:...%
+
+;=============================================================================;
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+label-mode-padding = 1
+label-mode-foreground = ${colors.foreground-alt}
+label-mode-background = ${colors.primary}
+
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline = ${colors.primary}
+label-focused-padding = 1
+
+label-unfocused = %index%
+label-unfocused-padding = 1
+
+label-urgent = %index%
+label-urgent-background = ${colors.alert-high}
+label-urgent-padding = 1
+
+label-visible = %index%
+label-visible-background = ${colors.background-alt}
+label-visible-padding = 1
+
+;=============================================================================;
+
+[module/backlight]
+type = custom/script
+exec = ~/.config/polybar/light.sh
+interval = 0.2
+
+format = <label>
+format-foreground = ${colors.foreground}
+format-underline = ${colors.primary}
+label =  %output%
+
+;=============================================================================;
+
+[module/cpu]
+type = internal/cpu
+interval = 0.2
+format = <label> <ramp-coreload>
+format-underline = ${colors.primary}
+label = 
+ramp-coreload-0 = ▁
+ramp-coreload-0-foreground = ${colors.primary}
+ramp-coreload-1 = ▂
+ramp-coreload-1-foreground = ${colors.primary}
+ramp-coreload-2 = ▃
+ramp-coreload-2-foreground = ${colors.primary}
+ramp-coreload-3 = ▄
+ramp-coreload-3-foreground = ${colors.primary}
+ramp-coreload-4 = ▅
+ramp-coreload-4-foreground = ${colors.primary}
+ramp-coreload-5 = ▆
+ramp-coreload-5-foreground = ${colors.alert-low}
+ramp-coreload-6 = ▇
+ramp-coreload-6-foreground = ${colors.alert-med}
+ramp-coreload-7 = █
+ramp-coreload-7-foreground = ${colors.alert-high}
+
+;=============================================================================;
+
+[module/memory]
+type = internal/memory
+interval = 2
+format= <label> <bar-used>
+label = 
+format-underline = ${colors.primary}
+bar-used-indicator =
+bar-used-width = 16
+bar-used-foreground-0  = ${colors.primary}
+bar-used-foreground-1  = ${colors.primary}
+bar-used-foreground-2  = ${colors.primary}
+bar-used-foreground-3  = ${colors.primary}
+bar-used-foreground-4  = ${colors.primary}
+bar-used-foreground-5  = ${colors.primary}
+bar-used-foreground-6  = ${colors.primary}
+bar-used-foreground-7  = ${colors.primary}
+bar-used-foreground-8  = ${colors.primary}
+bar-used-foreground-9  = ${colors.primary}
+bar-used-foreground-10 = ${colors.alert-low}
+bar-used-foreground-11 = ${colors.alert-low}
+bar-used-foreground-12 = ${colors.alert-med}
+bar-used-foreground-13 = ${colors.alert-med}
+bar-used-foreground-14 = ${colors.alert-high}
+bar-used-foreground-15 = ${colors.alert-high}
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = ${colors.inactive}
+
+;=============================================================================;
+
+[module/wlan]
+type = internal/network
+interface = wlp58s0
+interval = 1
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-underline = ${colors.primary}
+format-disconnected-underline = ${colors.alert-low}
+
+label-connected = %essid%
+label-disconnected = Disconnected
+
+ramp-signal-0 = 
+
+;=============================================================================;
+
+[module/eth]
+type = internal/network
+interface = eth0
+interval = 3.0
+
+format-connected-underline = ${colors.primary}
+format-connected-prefix = 
+format-connected-foreground = ${colors.foreground}
+label-connected = %local_ip%
+
+format-disconnected-underline = ${colors.alert-low}
+label-disconnected = disconnected
+label-disconnected-foreground = ${colors.foreground}
+
+;=============================================================================;
+
+[module/date]
+type = internal/date
+interval = 1
+
+time = %H:%M:%S
+date = %a %d-%m-%Y %Z
+
+label = %time% %date%
+format-underline = ${colors.primary}
+
+;=============================================================================;
+
+[module/volume]
+type = internal/volume
+
+master-mixer = Master
+;speaker-mixer = Speaker
+;headphone-mixer = Headphone
+;headphone-id = 9
+;mapping = true
+
+format-volume = <label-volume> <ramp-volume>
+format-volume-underline = ${colors.primary}
+format-muted = <label-muted>
+format-muted-underline = ${colors.alert-low}
+
+label-volume =  %percentage%
+label-volume-foreground = ${colors.foreground}
+
+label-muted = "  "
+format-muted-foreground = ${colors.foreground}
+
+ramp-volume-0 = 🔈
+ramp-volume-1 = 🔉
+ramp-volume-2 = 🔊
+ramp-volume-foreground = ${colors.foreground}
+
+; If defined, it will replace <ramp-volume> when
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+
+;=============================================================================;
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 99
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.primary}
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${colors.primary}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground}
+format-full-underline = ${colors.primary}
+
+time-format = %H:%M
+label-full = Full
+label-charging = %percentage% (%time%)
+label-discharging = %percentage% (%time%)
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.foreground}
+animation-charging-framerate = 750
+
+;=============================================================================;
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = ${colors.primary}
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${colors.alert-high}
+
+label = %temperature%
+label-warn = %temperature%
+label-warn-foreground = ${colors.alert-high}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-foreground = ${colors.foreground}
+
+;=============================================================================;
+
+[module/powermenu]
+type = custom/menu
+
+label-open = 
+label-open-foreground = ${colors.alert-high}
+label-close = 
+label-close-foreground = ${colors.alert-high}
+
+menu-0-0 = Logout
+menu-0-0-exec = menu-open-1
+menu-0-1 = Reboot
+menu-0-1-exec = menu-open-2
+menu-0-2 = Shutdown
+menu-0-2-exec = menu-open-3
+
+menu-1-0 = Confirm Logout
+menu-1-0-exec = i3-msg exit
+menu-1-0-foreground = ${colors.alert-low}
+
+menu-2-0 = Confirm Reboot
+menu-2-0-exec = sudo reboot
+menu-2-0-foreground = ${colors.alert-low}
+
+menu-3-0 = Confirm Shutdown
+menu-3-0-exec = sudo shutdown -P now
+menu-3-0-foreground = ${colors.alert-low}
+
+;=============================================================================;
