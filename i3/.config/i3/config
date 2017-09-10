@@ -246,3 +246,4 @@ exec redshift
 # in a hackathon once that involved lots of windows opening and closing.
 # no_focus [class=".*"]
 
+for_window [class="^.*"] border pixel 6
