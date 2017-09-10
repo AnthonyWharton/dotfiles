@@ -21,6 +21,8 @@ set number               " Line numbers are great
 set title                " Change the terminal's title
 set wildmenu             " Fancy autocompletion
 syntax on                " Use syntax highlighting (assuming terminal has colour support)
+colorscheme elflord      " Use in-built elflord colourscheme
+
 
 " Undo & History
 set history=1000         " Remember more commands and search history
