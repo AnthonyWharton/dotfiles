@@ -201,8 +201,8 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 ################################################################################
 
 # Used with i3gaps
-new_window pixel 3
-gap_size 16
+new_window pixel 1
+gaps inner 16
 
 # Sort out Graphics
 exec compton --config ~/.config/compton/config.cfg
