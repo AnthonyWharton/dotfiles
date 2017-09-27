@@ -201,7 +201,7 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 ################################################################################
 
 # Used with i3gaps
-new_window pixel 1
+new_window pixel 3
 gaps inner 16
 
 # Sort out Graphics
@@ -246,4 +246,7 @@ exec redshift
 # in a hackathon once that involved lots of windows opening and closing.
 # no_focus [class=".*"]
 
-for_window [class="^.*"] border pixel 6
+# Who knows what this is for.. Past Anthony sure does but it seems to just be
+# a pain for current Anthony so it's going to be left passively aggressively
+# commented out.
+# for_window [class="^.*"] border pixel 6 
