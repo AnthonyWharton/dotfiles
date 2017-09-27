@@ -122,12 +122,8 @@ alias gitFUCK='git reset --hard HEAD~'
 
 alias tm='~/Documents/Misc/Scripts/tmux-session.sh'
 
-alias work='cd ~/Documents/University-Work/Year-2/'
-alias concurrent='cd ~/Documents/University-Work/Year-2/Concurrent-Computing/Term2'
-alias langeng='cd ~/Documents/University-Work/Year-2/Language-Engineering/Term2'
-alias spe='cd ~/Documents/University-Work/Year-2/Software-Product-Engineering/'
-alias sps='cd ~/Documents/University-Work/Year-2/Signals-Patterns-Symbols/'
-alias coconut='cd ~/Documents/University-Work/Year-2/Complexity-Coding-Number-Theory' 
+alias work='cd ~/Documents/University-Work/Year-3/'
+alias cdml='cd ~/Documents/University-Work/Year-3/Machine-Learning/'
 
 alias ark='ssh -X -i ~/Documents/Misc/SSH/privateArk -p 9669 anthony@ark.itgr.uk'
 alias arks='sftp -i ~/Documents/Misc/SSH/privateArk -P 9669 anthony@ark.itgr.uk'
@@ -141,6 +137,16 @@ alias rc='sudo openvpn --config ~/.openvpn/UltraHorizon.ovpn --log /var/log/open
 
 alias monitor-fix='xrandr --output eDP-1 --auto --output DP-1 --off'
 alias monitor-1080p-above='xrandr --fb 3200x3420 --output eDP-1 --mode 3200x1800 --pos 0x1620 --scale 1x1 --output DP-1 --mode 1920x1080 --pos 160x0 --scale-from 2880x1620'
+
+#####
+
+# Overloading SSH with custom endpoint to bluecrystal
+function ssh() {
+    case $1 in
+        bluecrystal ) ssh aw15885@snowy.cs.bris.ac.uk -t "ssh aw15885@bluecrystalp3.bris.ac.uk" ;;
+        * ) command ssh $@ ;;
+    esac
+}
 
 #####
 
