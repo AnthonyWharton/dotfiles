@@ -143,10 +143,29 @@ alias monitor-1080p-above='xrandr --fb 3200x3420 --output eDP-1 --mode 3200x1800
 # Overloading SSH with custom endpoint to bluecrystal
 function ssh() {
     case $1 in
-        bluecrystal ) ssh aw15885@snowy.cs.bris.ac.uk -t "ssh aw15885@bluecrystalp3.bris.ac.uk" ;;
+        bluecrystal ) ssh -i ~/.ssh/snowy/snowykey aw15885@snowy.cs.bris.ac.uk -t "ssh -i ~/.ssh/bckey aw15885@bluecrystalp3.bris.ac.uk" ;;
         * ) command ssh $@ ;;
     esac
 }
+
+#####
+
+# Mad hacks courtesy of https://www.codyhiar.com/blog/zsh-autocomplete-with-ssh-config-file/
+
+# Highlight the current autocomplete option
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+# Better SSH/Rsync/SCP Autocomplete
+zstyle ':completion:*:(scp|rsync):*' tag-order ' hosts:-ipaddr:ip\ address hosts:-host:host files'
+zstyle ':completion:*:(ssh|scp|rsync):*:hosts-host' ignored-patterns '*(.|:)*' loopback ip6-loopback localhost ip6-localhost broadcasthost
+zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<->.<->.<->|(|::)([[:xdigit:].]##:(#c,2))##(|%*))' '127.0.0.<->' '255.255.255.255' '::1' 'fe80::*'
+
+# Allow for autocomplete to be case insensitive
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' \
+  '+l:|?=** r:|?=**'
+
+# Initialize the autocompletion
+autoload -Uz compinit && compinit -i
 
 #####
 
