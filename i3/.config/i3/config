@@ -202,7 +202,7 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # Used with i3gaps
 new_window pixel 3
-gaps inner 16
+gaps inner 32
 
 # Sort out Graphics
 exec compton --config ~/.config/compton/config.cfg
@@ -215,7 +215,7 @@ bindsym $mod+l exec i3lock -i ~/.config/i3/lock.png
 hide_edge_borders both
 
 # Wallpaper
-exec_always feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg
+exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/volume.sh -u
