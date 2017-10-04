@@ -36,7 +36,7 @@ padding-right = 1
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = SauceCodePro Nerd Font:style=Regular:pixelsize=26;0
+font-0 = SauceCodePro Nerd Font:style=Regular:pixelsize=22;0
 
 modules-left = i3 xwindow
 modules-center = 
@@ -211,7 +211,7 @@ format-volume-underline = ${colors.primary}
 format-muted = <label-muted>
 format-muted-underline = ${colors.alert-low}
 
-label-volume =  %percentage%
+label-volume =  %percentage%%
 label-volume-foreground = ${colors.foreground}
 
 label-muted = "  "
@@ -246,8 +246,8 @@ format-full-underline = ${colors.primary}
 
 time-format = %H:%M
 label-full = Full
-label-charging = %percentage% (%time%)
-label-discharging = %percentage% (%time%)
+label-charging = %percentage%% (%time%)
+label-discharging = %percentage%% (%time%)
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -309,11 +309,11 @@ menu-1-0-exec = i3-msg exit
 menu-1-0-foreground = ${colors.alert-low}
 
 menu-2-0 = Confirm Reboot
-menu-2-0-exec = sudo reboot
+menu-2-0-exec = reboot
 menu-2-0-foreground = ${colors.alert-low}
 
 menu-3-0 = Confirm Shutdown
-menu-3-0-exec = sudo shutdown -P now
+menu-3-0-exec = shutdown -P now
 menu-3-0-foreground = ${colors.alert-low}
 
 ;=============================================================================;
