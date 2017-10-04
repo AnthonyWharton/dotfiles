@@ -2,7 +2,7 @@
  export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
- export ZSH=/home/anthony/.oh-my-zsh
+ export ZSH=/usr/share/oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -55,21 +55,20 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git powerline cabal last-working-dir lol pip sudo systemd web-search wd)
 
 source $ZSH/oh-my-zsh.sh
-. /usr/local/lib/python3.5/dist-packages/powerline/bindings/zsh/powerline.zsh
+. /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # User configuration
-
- export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='vim'
+else
+    export EDITOR='vim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -84,6 +83,14 @@ setopt no_share_history
 setopt PROMPT_CR
 setopt PROMPT_SP
 export PROMPT_EOL_MARK=" %{$bg[red]%}%{$fg[white]%}\n%{$reset_color%}"
+
+# Start up the ssh-agent
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > ~/.ssh-agent.pid
+fi
+if [[ "$SSH_AGENT_PID" == "" ]]; then
+    eval "$(<~/.ssh-agent.pid)" > /dev/null
+fi
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -126,10 +133,8 @@ alias tm='~/Documents/Misc/Scripts/tmux-session.sh'
 alias work='cd ~/Documents/University-Work/Year-3/'
 alias cdml='cd ~/Documents/University-Work/Year-3/Machine-Learning/'
 
-alias ark='ssh -X -i ~/Documents/Misc/SSH/privateArk -p 9669 anthony@ark.itgr.uk'
-alias arks='sftp -i ~/Documents/Misc/SSH/privateArk -P 9669 anthony@ark.itgr.uk'
-alias ryn='ssh -X -i ~/Documents/Misc/SSH/privateDroplets -l ant -p 9669 ant@ryn.itgr.uk'
-alias ryns='sftp -i ~/Documents/Misc/SSH/privateDroplets -P 9669 ant@ryn.itgr.uk'
+alias ark='ssh -X -i ~/.ssh/privateArk -p 9669 anthony@ark.itgr.uk'
+alias arks='sftp -i ~/.ssh/privateArk -P 9669 anthony@ark.itgr.uk'
 
 alias starwars='telnet towel.blinkenlights.nl'
 
@@ -142,12 +147,12 @@ alias monitor-1080p-above='xrandr --fb 3200x3420 --output eDP-1 --mode 3200x1800
 #####
 
 # Overloading SSH with custom endpoint to bluecrystal
-function ssh() {
-    case $1 in
-        bluecrystal ) ssh -i ~/.ssh/snowy/snowykey aw15885@snowy.cs.bris.ac.uk -t "ssh -i ~/.ssh/bckey aw15885@bluecrystalp3.bris.ac.uk" ;;
-        * ) command ssh $@ ;;
-    esac
-}
+#function ssh() {
+#    case $1 in
+#        bluecrystal ) ssh -i ~/.ssh/snowy/snowykey aw15885@snowy.cs.bris.ac.uk -t "ssh -i ~/.ssh/bckey aw15885@bluecrystalp3.bris.ac.uk" ;;
+#        * ) command ssh $@ ;;
+#    esac
+#}
 
 #####
 

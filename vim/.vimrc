@@ -1,10 +1,11 @@
 " Powerline
+let g:powerline_pycmd = "py3" " Use Python 3
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
 python3 del powerline_setup
-set rtp+=/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim
-set laststatus=2 " Always show status line
-set t_Co=256 " Use 256 colours
+set rtp+=/usr/lib/python3.6/site-packages/powerline/bindings/vim
+set laststatus=2         " Always show status line
+set t_Co=256             " Use 256 colours
 
 
 " Indentation
@@ -36,4 +37,5 @@ set hlsearch             " Highlight searched terms
 set incsearch            " Show highlighted terms as you search
 
 " Misc
+set novisualbell
 set pastetoggle=<F2>     " Paste mode when pressing F2 (disables smart tab do-da's)
