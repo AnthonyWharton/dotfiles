@@ -1,8 +1,8 @@
 # If you come from bash you might have to change your $PATH.
- export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
- export ZSH=/usr/share/oh-my-zsh
+export ZSH=/usr/share/oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -131,7 +131,8 @@ alias gitFUCK='git reset --hard HEAD~'
 alias tm='~/Documents/Misc/Scripts/tmux-session.sh'
 
 alias work='cd ~/Documents/University-Work/Year-3/'
-alias cdml='cd ~/Documents/University-Work/Year-3/Machine-Learning/'
+alias ml='cd ~/Documents/University-Work/Year-3/Machine-Learning/'
+alias hpc='cd ~/Documents/University-Work/Year-3/Intro-To-HPC'
 
 alias ark='ssh -X -i ~/.ssh/privateArk -p 9669 anthony@ark.itgr.uk'
 alias arks='sftp -i ~/.ssh/privateArk -P 9669 anthony@ark.itgr.uk'
@@ -147,12 +148,12 @@ alias monitor-1080p-above='xrandr --fb 3200x3420 --output eDP-1 --mode 3200x1800
 #####
 
 # Overloading SSH with custom endpoint to bluecrystal
-#function ssh() {
-#    case $1 in
-#        bluecrystal ) ssh -i ~/.ssh/snowy/snowykey aw15885@snowy.cs.bris.ac.uk -t "ssh -i ~/.ssh/bckey aw15885@bluecrystalp3.bris.ac.uk" ;;
-#        * ) command ssh $@ ;;
-#    esac
-#}
+function ssh() {
+    case $1 in
+        bluecrystal ) ssh bluecrystal-auto -t "ssh -i ~/.ssh/bckey aw15885@bluecrystalp3.bris.ac.uk" ;;
+        * ) command ssh $@ ;;
+    esac
+}
 
 #####
 
