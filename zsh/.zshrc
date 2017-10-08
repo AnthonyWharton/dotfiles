@@ -142,45 +142,24 @@ alias starwars='telnet towel.blinkenlights.nl'
 alias dc='sudo killall openvpn'
 alias rc='sudo openvpn --config ~/.openvpn/UltraHorizon.ovpn --log /var/log/openvpn.log &'
 
-alias monitor-fix='xrandr --output eDP-1 --auto --output DP-1 --off'
-alias monitor-1080p-above='xrandr --fb 3200x3420 --output eDP-1 --mode 3200x1800 --pos 0x1620 --scale 1x1 --output DP-1 --mode 1920x1080 --pos 160x0 --scale-from 2880x1620'
+alias monitor-fix='xrandr --output eDP1 --auto --output DP1 --off'
+alias monitor-1080p-above='xrandr --fb 3200x3420 --output eDP1 --mode 3200x1800 --pos 0x1620 --scale 1x1 --output DP1 --mode 1920x1080 --pos 160x0 --scale-from 2880x1620; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
 
 #####
 
 # Overloading SSH with custom endpoint to bluecrystal
 function ssh() {
     case $1 in
-        bluecrystal ) ssh bluecrystal-auto -t "ssh -i ~/.ssh/bckey aw15885@bluecrystalp3.bris.ac.uk" ;;
+        bluecrystal ) ssh bluecrystal-auto -t "ssh aw15885@bluecrystalp3.bris.ac.uk" ;;
         * ) command ssh $@ ;;
     esac
 }
 
 #####
 
-# Mad hacks courtesy of https://www.codyhiar.com/blog/zsh-autocomplete-with-ssh-config-file/
-
-# Highlight the current autocomplete option
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-
-# Better SSH/Rsync/SCP Autocomplete
-zstyle ':completion:*:(scp|rsync):*' tag-order ' hosts:-ipaddr:ip\ address hosts:-host:host files'
-zstyle ':completion:*:(ssh|scp|rsync):*:hosts-host' ignored-patterns '*(.|:)*' loopback ip6-loopback localhost ip6-localhost broadcasthost
-zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<->.<->.<->|(|::)([[:xdigit:].]##:(#c,2))##(|%*))' '127.0.0.<->' '255.255.255.255' '::1' 'fe80::*'
-
-# Allow for autocomplete to be case insensitive
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' \
-  '+l:|?=** r:|?=**'
-
-# Initialize the autocompletion
-autoload -Uz compinit && compinit -i
-
-#####
-
 # Some EXPORT variables
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-export PATH=$PATH:~/.cabal/bin
-export PATH=$PATH:~/texmf/
-export PATH="/opt/anaconda3/bin:$PATH"
+export PATH=$PATH:~/Documents/University-Work/Year-3/Intro-To-HPC/bcsubmit/
 
 # Go up n directories. Usage: user:~$ up n
 up() {
@@ -233,6 +212,3 @@ extract() {
   fi
 }
 
-#####
-
-cd
