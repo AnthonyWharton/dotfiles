@@ -237,10 +237,10 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym --release Print exec maim -s /tmp/shot.png && xclip -selection c -t image/png /tmp/shot.png && rm -f /tmp/shot.png
 
 # Start WiFi Applet
-exec nm-applet
+exec --no-startup-id nm-applet
 
 # Start redshift
-exec redshift
+exec --no-startup-id redshift
 
 # Stop pulling focus upon opening any new window - used for some spammy editing
 # in a hackathon once that involved lots of windows opening and closing.
