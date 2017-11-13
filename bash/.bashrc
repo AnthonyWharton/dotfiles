@@ -54,6 +54,8 @@ alias starwars='telnet towel.blinkenlights.nl'
 alias dc='sudo killall openvpn'
 alias rc='sudo openvpn --config /etc/openvpn/UltraHorizon-EC-Auth.conf --writepid /run/openvpn/openvpn.pid --log /var/log/openvpn.log &'
 
+export QT_QPA_PLATFORMTHEME=gtk2
+
 ################################################################################
 ### From Ubuntu's .bashrc (Edited)                                           ###
 ################################################################################

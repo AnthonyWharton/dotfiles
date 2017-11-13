@@ -132,6 +132,7 @@ function ssh() {
 # Some EXPORT variables
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export PATH=$PATH:~/Documents/University-Work/Year-3/Intro-To-HPC/bcsubmit/
+export QT_QPA_PLATFORMTHEME=gtk2
 
 # Go up n directories. Usage: user:~$ up n
 up() {
