@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/etc/X11/xorg.conf.d'
+let g:netrw_dirhist_2='/home/anthony/.dotfiles/dunst/.config/dunst'
+let g:netrw_dirhist_3='/home/anthony/.ssh/bluecrystal'
+let g:netrw_dirhist_4='/usr/share/oh-my-zsh/plugins/cake'
+let g:netrw_dirhist_5='/usr/share/oh-my-zsh/plugins/github'
+let g:netrw_dirhist_6='/usr/share/oh-my-zsh/plugins/history'
+let g:netrw_dirhist_7='/home/anthony/Documents/Keyboard/qmk_firmware/keyboards/ps2avrGB/keymaps/default'
+let g:netrw_dirhist_8='/home/anthony/Documents/Projects/UltraHorizon/pfSense-UH-UIPatch/test'

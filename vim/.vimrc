@@ -1,3 +1,6 @@
+" Pathogen
+execute pathogen#infect()
+
 " Powerline
 let g:powerline_pycmd = "py3" " Use Python 3
 python3 from powerline.vim import setup as powerline_setup
@@ -7,6 +10,31 @@ set rtp+=/usr/lib/python3.6/site-packages/powerline/bindings/vim
 set laststatus=2         " Always show status line
 set t_Co=256             " Use 256 colours
 
+" Hack to allow Alt key usage
+let c='a'
+while c <= 'z'
+  exec "set <A-".c.">=\e".c
+  exec "imap \e".c." <A-".c.">"
+  let c = nr2char(1+char2nr(c))
+endw
+set timeout ttimeoutlen=50
+
+" Tree
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let g:NERDTreeWinSize = 30
+nmap <silent> <A-Up>    :wincmd k<CR>
+nmap <silent> <A-Down>  :wincmd j<CR>
+nmap <silent> <A-Left>  :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+nmap <silent> <A-k>     :wincmd k<CR>
+nmap <silent> <A-j>     :wincmd j<CR>
+nmap <silent> <A-h>     :wincmd h<CR>
+nmap <silent> <A-l>     :wincmd l<CR>
+map <C-n> :NERDTreeToggle<CR>
+autocmd vimenter * NERDTree  " Autostart NERDTree
+autocmd vimenter * wincmd p  " And then focus on file
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Indentation
 set autoindent           " Use auto indentation
@@ -22,8 +50,10 @@ set number               " Line numbers are great
 set title                " Change the terminal's title
 set wildmenu             " Fancy autocompletion
 syntax on                " Use syntax highlighting (assuming terminal has colour support)
-colorscheme elflord      " Use in-built elflord colourscheme
-
+colorscheme adventurous  " Use in-built elflord colourscheme
+" 80 Character ENFORCING
+let &colorcolumn=join(range(81,999),",")
+set cursorline
 
 " Undo & History
 set history=1000         " Remember more commands and search history
