@@ -20,9 +20,10 @@ endw
 set timeout ttimeoutlen=50
 
 " Tree
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let g:NERDTreeWinSize = 30
+let NERDTreeMinimalUI  = 1
+let NERDTreeDirArrows  = 1
+let NERDTreeShowHidden = 1
+let g:NERDTreeWinSize  = 30
 nmap <silent> <A-Up>    :wincmd k<CR>
 nmap <silent> <A-Down>  :wincmd j<CR>
 nmap <silent> <A-Left>  :wincmd h<CR>
@@ -32,9 +33,10 @@ nmap <silent> <A-j>     :wincmd j<CR>
 nmap <silent> <A-h>     :wincmd h<CR>
 nmap <silent> <A-l>     :wincmd l<CR>
 map <C-n> :NERDTreeToggle<CR>
-autocmd vimenter * NERDTree  " Autostart NERDTree
-autocmd vimenter * wincmd p  " And then focus on file
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd VimEnter * NERDTree  " Autostart NERDTree
+autocmd VimEnter * wincmd p  " And then focus on file
+autocmd BufWinEnter * NERDTreeMirror
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Indentation
 set autoindent           " Use auto indentation
