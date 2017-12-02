@@ -1,6 +1,3 @@
-" Pathogen
-execute pathogen#infect()
-
 " Powerline
 let g:powerline_pycmd = "py3" " Use Python 3
 python3 from powerline.vim import setup as powerline_setup
@@ -13,11 +10,18 @@ set t_Co=256             " Use 256 colours
 " Hack to allow Alt key usage
 let c='a'
 while c <= 'z'
-  exec "set <A-".c.">=\e".c
-  exec "imap \e".c." <A-".c.">"
-  let c = nr2char(1+char2nr(c))
+    exec "set <A-".c.">=\e".c
+    exec "imap \e".c." <A-".c.">"
+    let c = nr2char(1+char2nr(c))
 endw
 set timeout ttimeoutlen=50
+
+call plug#begin('~/.vim/vim-plug-plugins')
+    Plug 'scrooloose/nerdtree'
+    Plug 'lervag/vimtex'
+    Plug 'Valloric/YouCompleteMe'
+    Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+call plug#end()
 
 " Tree
 let NERDTreeMinimalUI  = 1
@@ -37,6 +41,10 @@ autocmd VimEnter * NERDTree  " Autostart NERDTree
 autocmd VimEnter * wincmd p  " And then focus on file
 autocmd BufWinEnter * NERDTreeMirror
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Latex 
+let g:tex_flavor = 'latex'
+let g:vimtex_latexmk_continuous = 1
 
 " Indentation
 set autoindent           " Use auto indentation
