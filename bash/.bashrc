@@ -1,3 +1,12 @@
+
+
+#
+#   Note that I have moved to ZSH so this is pretty untouched these days.
+#   A lot of the shell goodies in here are in .zshrc and should be compatible
+#   here as well, so you may want to look there.
+#
+
+
 ################################################################################
 ### .bashrc                                                                  ###
 ###   A concoction of .bashrc goodies, mostly from the internet but          ###
