@@ -48,7 +48,7 @@ set $urgent-bg-color        #e53935
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # start rofi (another program launcher)
-bindsym $mod+d exec "rofi -show drun -lines 7 -color-enabled -color-window \\"#2f343f, argb:0002b36, #000000\\" -color-normal \\"#2f343f, #5d6371, #2c313c, #5d6371, #f3f4f5\\" -opacity \\"100\\" -bw 1 -font \\"Roboto Mono Light 32\\""
+bindsym $mod+d exec ~/.config/i3/rofi.sh
 
 # change focus
 bindsym $mod+Left focus left
