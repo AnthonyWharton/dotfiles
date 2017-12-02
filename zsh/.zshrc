@@ -119,10 +119,20 @@ alias monitor-1080p-left2='xrandr --fb 5120x1800 --output eDP1 --mode 3200x1800 
 
 #####
 
+# Overloading sudo
+function sudo() {
+    case $1 in
+        su) command sudo -E -H -s zsh ;;
+        * ) command sudo $@ ;;
+    esac
+}
+
+#####
+
 # Overloading SSH with custom endpoint to bluecrystal
 function ssh() {
     case $1 in
-        bluecrystal ) ssh bluecrystal-auto -t "ssh aw15885@bluecrystalp3.bris.ac.uk" ;;
+        bluecrystal ) ssh snowy -t "ssh bluecrystal" ;;
         * ) command ssh $@ ;;
     esac
 }
