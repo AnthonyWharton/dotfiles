@@ -12,7 +12,7 @@
 set $mod Mod4
 
 # Font Selection
-font pango:Sauce Code Pro 9
+font pango:Sauce Code Pro Mono 9
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -77,10 +77,10 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+Shift+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -136,8 +136,8 @@ bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
 # move workspace to 
-bindsym $mod+Control+Shift+Left  move workspace to output eDP1
-bindsym $mod+Control+Shift+Right move workspace to output DP1
+bindsym $mod+Control+Shift+Down  move workspace to output eDP-1
+bindsym $mod+Control+Shift+Up move workspace to output DP-1
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -244,6 +244,13 @@ exec --no-startup-id redshift
 
 # Mad google casty thing
 exec --no-startup-id pulseaudio-dlna
+
+# Auto exec things on different workspaces
+#exec --no-startup-id i3-msg 'workspace $workspace1;  exec firefox-quantum'
+#exec --no-startup-id i3-msg 'workspace $workspace2;  exec i3-sensible-terminal; exec i3-sensible-terminal'
+#exec --no-startup-id i3-msg 'workspace $workspace10; exec telegram-desktop'
+#exec --no-startup-id i3-msg 'workspace $workspace2'
+
 
 # Stop pulling focus upon opening any new window - used for some spammy editing
 # in a hackathon once that involved lots of windows opening and closing.
