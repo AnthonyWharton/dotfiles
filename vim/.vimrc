@@ -21,6 +21,7 @@ call plug#begin('~/.vim/vim-plug-plugins')
     Plug 'lervag/vimtex'
     Plug 'Valloric/YouCompleteMe'
     Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+    Plug 'tpope/vim-commentary'
 call plug#end()
 
 " Tree
@@ -75,6 +76,12 @@ set noerrorbells         " Don't beep
 set smartcase            " Ignore case if all lower case, else search is case sensitive
 set hlsearch             " Highlight searched terms
 set incsearch            " Show highlighted terms as you search
+
+"Commenting
+filetype plugin on
+nmap <silent> <C-_>    gcc
+imap <silent> <C-_>    <C-o>gcc
+vmap <silent> <C-_>    gc
 
 " Misc
 set novisualbell
