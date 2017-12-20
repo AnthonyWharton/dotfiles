@@ -40,7 +40,7 @@ font-0 = SauceCodePro Nerd Font:style=Regular:pixelsize=22;0
 
 modules-left = i3 xwindow
 modules-center = 
-modules-right = backlight volume cpu memory wlan eth battery date powermenu
+modules-right = backlight volume cpu memory wlan battery date
 
 tray-position = right
 tray-padding = 1
@@ -169,22 +169,6 @@ ramp-signal-0 = 
 
 ;=============================================================================;
 
-[module/eth]
-type = internal/network
-interface = eth0
-interval = 3.0
-
-format-connected-underline = ${colors.primary}
-format-connected-prefix = 
-format-connected-foreground = ${colors.foreground}
-label-connected = %local_ip%
-
-format-disconnected-underline = ${colors.alert-low}
-label-disconnected = disconnected
-label-disconnected-foreground = ${colors.foreground}
-
-;=============================================================================;
-
 [module/date]
 type = internal/date
 interval = 1
@@ -206,7 +190,7 @@ master-mixer = Master
 ;headphone-id = 9
 ;mapping = true
 
-format-volume = <label-volume> <ramp-volume>
+format-volume = <label-volume>
 format-volume-underline = ${colors.primary}
 format-muted = <label-muted>
 format-muted-underline = ${colors.alert-low}
@@ -216,15 +200,6 @@ label-volume-foreground = ${colors.foreground}
 
 label-muted = "  "
 format-muted-foreground = ${colors.foreground}
-
-ramp-volume-0 = 🔈
-ramp-volume-1 = 🔉
-ramp-volume-2 = 🔊
-ramp-volume-foreground = ${colors.foreground}
-
-; If defined, it will replace <ramp-volume> when
-ramp-headphones-0 = 
-ramp-headphones-1 = 
 
 ;=============================================================================;
 
@@ -263,57 +238,5 @@ animation-charging-3 = 
 animation-charging-4 = 
 animation-charging-foreground = ${colors.foreground}
 animation-charging-framerate = 750
-
-;=============================================================================;
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
-
-format = <ramp> <label>
-format-underline = ${colors.primary}
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${colors.alert-high}
-
-label = %temperature%
-label-warn = %temperature%
-label-warn-foreground = ${colors.alert-high}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-3 = 
-ramp-4 = 
-ramp-foreground = ${colors.foreground}
-
-;=============================================================================;
-
-[module/powermenu]
-type = custom/menu
-
-label-open = 
-label-open-foreground = ${colors.alert-high}
-label-close = 
-label-close-foreground = ${colors.alert-high}
-
-menu-0-0 = Logout
-menu-0-0-exec = menu-open-1
-menu-0-1 = Reboot
-menu-0-1-exec = menu-open-2
-menu-0-2 = Shutdown
-menu-0-2-exec = menu-open-3
-
-menu-1-0 = Confirm Logout
-menu-1-0-exec = i3-msg exit
-menu-1-0-foreground = ${colors.alert-low}
-
-menu-2-0 = Confirm Reboot
-menu-2-0-exec = reboot
-menu-2-0-foreground = ${colors.alert-low}
-
-menu-3-0 = Confirm Shutdown
-menu-3-0-exec = shutdown -P now
-menu-3-0-foreground = ${colors.alert-low}
 
 ;=============================================================================;
