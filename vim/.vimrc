@@ -77,7 +77,7 @@ set smartcase            " Ignore case if all lower case, else search is case se
 set hlsearch             " Highlight searched terms
 set incsearch            " Show highlighted terms as you search
 
-"Commenting
+" Commenting
 filetype plugin on
 nmap <silent> <C-_>    gcc
 imap <silent> <C-_>    <C-o>gcc

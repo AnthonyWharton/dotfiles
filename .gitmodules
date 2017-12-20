@@ -13,3 +13,6 @@
 [submodule "vim/.vim/vim-plug-plugins/YouCompleteMe"]
 	path = vim/.vim/vim-plug-plugins/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "vim/.vim/vim-plug-plugins/vim-commentary"]
+	path = vim/.vim/vim-plug-plugins/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git
