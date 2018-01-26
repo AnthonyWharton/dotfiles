@@ -50,11 +50,23 @@ let g:vimtex_latexmk_continuous = 1
 " Indentation
 set autoindent           " Use auto indentation
 set copyindent           " Copy previous indentation when auto indenting
-set expandtab            " Use soft tabs (expand tab -> spaces)
-set tabstop=4            " Use 4 spaces for soft tabs
-set shiftwidth=4         " Use 4 spaces for reindenation
-set softtabstop=4        " Use 4 spaces in insert mode
+set noexpandtab          " Use soft tabs (expand tab -> spaces)
+set tabstop=8            " Use 4 spaces for soft tabs
+set shiftwidth=8         " Use 4 spaces for reindenation
+set softtabstop=8        " Use 4 spaces in insert mode
 set smarttab             " Insert tabs on the start of line according to shiftwidth not tabstop
+
+" Undo & History
+set history=1000         " Remember more commands and search history
+set undolevels=1000      " MOAR levels of undo
+set visualbell           " Don't beep
+set noerrorbells         " Don't beep
+
+" Search
+set ignorecase
+set smartcase            " Ignore case if all lower case, else search is case sensitive
+set hlsearch             " Highlight searched terms
+set incsearch            " Show highlighted terms as you search
 
 " Appearence
 set number               " Line numbers are great
@@ -66,23 +78,19 @@ colorscheme adventurous  " Use in-built elflord colourscheme
 let &colorcolumn=join(range(81,999),",")
 set cursorline
 
-" Undo & History
-set history=1000         " Remember more commands and search history
-set undolevels=1000      " MOAR levels of undo
-set visualbell           " Don't beep
-set noerrorbells         " Don't beep
+" Map :W to sudo write
+command W w !sudo tee % > /dev/null
 
-" Search
-set smartcase            " Ignore case if all lower case, else search is case sensitive
-set hlsearch             " Highlight searched terms
-set incsearch            " Show highlighted terms as you search
+" date string option
+iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 
 " Commenting
 filetype plugin on
-nmap <silent> <C-_>    gcc
-imap <silent> <C-_>    <C-o>gcc
-vmap <silent> <C-_>    gc
+nmap <silent> <C-_> gcc
+imap <silent> <C-_> <C-o>gcc
+vmap <silent> <C-_> gc
 
 " Misc
 set novisualbell
 set pastetoggle=<F2>     " Paste mode when pressing F2 (disables smart tab do-da's)
+
