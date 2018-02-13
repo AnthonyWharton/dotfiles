@@ -62,6 +62,11 @@ set undolevels=1000      " MOAR levels of undo
 set visualbell           " Don't beep
 set noerrorbells         " Don't beep
 
+" Who needs swap files and backups? Not me!
+set nobackup
+set nowb
+set noswapfile
+
 " Search
 set ignorecase
 set smartcase            " Ignore case if all lower case, else search is case sensitive
@@ -86,6 +91,10 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 
 " Commenting
 filetype plugin on
+autocmd FileType c setlocal commentstring=//\ %s
+autocmd FileType h setlocal commentstring=//\ %s
+autocmd FileType cpp setlocal commentstring=//\ %s
+autocmd FileType hpp setlocal commentstring=//\ %s
 nmap <silent> <C-_> gcc
 imap <silent> <C-_> <C-o>gcc
 vmap <silent> <C-_> gc
@@ -93,4 +102,5 @@ vmap <silent> <C-_> gc
 " Misc
 set novisualbell
 set pastetoggle=<F2>     " Paste mode when pressing F2 (disables smart tab do-da's)
-
+set mouse=a              " We like using the mouse (filthy cretin)
+set scrolloff=999        " Broken Typewriter mode
