@@ -8,7 +8,7 @@ xset s noblank
 xrandr --dpi 196
 export GDK_SCALE=2
 gsettings set org.gnome.desktop.interface scaling-factor 2
-export BROWSER=/usr/bin/chromium
+export BROWSER=/usr/bin/firefox
 
 # Check dbus is running and check envrionment variables are all good
 # This should fix most of gnome/gtk based scaling with the above as well!

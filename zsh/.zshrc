@@ -97,8 +97,7 @@ alias gitFUCK='git reset --hard HEAD~'
 alias tm='~/Documents/Misc/Scripts/tmux-session.sh'
 
 alias work='cd ~/Documents/University-Work/Year-3/'
-alias ml='cd ~/Documents/University-Work/Year-3/Machine-Learning/'
-alias hpc='cd ~/Documents/University-Work/Year-3/Intro-To-HPC'
+alias tempo='cd ~/Documents/University-Work/Year-3/Games-Project/ProjectTempo-Alt'
 
 alias ark='ssh -X -i ~/.ssh/privateArk -p 9669 anthony@ark.itgr.uk'
 alias arks='sftp -i ~/.ssh/privateArk -P 9669 anthony@ark.itgr.uk'
@@ -106,7 +105,7 @@ alias arks='sftp -i ~/.ssh/privateArk -P 9669 anthony@ark.itgr.uk'
 alias starwars='telnet towel.blinkenlights.nl'
 
 alias dc='sudo killall openvpn'
-alias rc='sudo openvpn --config ~/.openvpn/UltraHorizon.ovpn --log /var/log/openvpn.log &'
+alias rc='sudo openvpn --config /etc/openvpn/UltraHorizon.ovpn --log /var/log/openvpn.log &'
 
 # To Do: Someday turn this into a nice wrapper function
 alias monitor-reset='xrandr --output eDP-1 --auto --output DP-1 --off; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
