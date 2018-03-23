@@ -6,9 +6,11 @@ xset s noblank
 # Please don't go mad on hidpi laptop.. you can do it I believe in you
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 xrandr --dpi 196
-export GDK_SCALE=2
-gsettings set org.gnome.desktop.interface scaling-factor 2
+# export GDK_SCALE=2
+# export GDK_DPI_SCALE=0.5
+# gsettings set org.gnome.desktop.interface scaling-factor 2
 export BROWSER=/usr/bin/firefox
+export EDITOR=vim
 
 # Check dbus is running and check envrionment variables are all good
 # This should fix most of gnome/gtk based scaling with the above as well!
