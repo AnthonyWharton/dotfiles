@@ -85,6 +85,7 @@ alias ei='vim ~/.config/i3/config'
 alias ez='vim ~/.zshrc'
 alias rz='source ~/.zshrc'
 
+alias got='git'
 alias gs='git status'
 alias ga='git add .'
 alias gl='git log'
@@ -98,6 +99,8 @@ alias tm='~/Documents/Misc/Scripts/tmux-session.sh'
 
 alias work='cd ~/Documents/University-Work/Year-3/'
 alias tempo='cd ~/Documents/University-Work/Year-3/Games-Project/ProjectTempo-Alt'
+alias tempobin='cd ~/Documents/University-Work/Year-3/Games-Project/ProjectTempo-Alt/bin'
+alias make='make -j4'
 
 alias ark='ssh -X -i ~/.ssh/privateArk -p 9669 anthony@ark.itgr.uk'
 alias arks='sftp -i ~/.ssh/privateArk -P 9669 anthony@ark.itgr.uk'
@@ -131,7 +134,8 @@ function sudo() {
 # Overloading SSH with custom endpoint to bluecrystal
 function ssh() {
     case $1 in
-        bluecrystal ) ssh snowy -t "ssh bluecrystal" ;;
+        bluecrystalp3 ) ssh snowy -t "ssh bluecrystalp3" ;;
+        bluecrystalp4 ) ssh snowy -t "ssh bluecrystalp4" ;;
         * ) command ssh $@ ;;
     esac
 }
