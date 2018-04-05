@@ -6,6 +6,7 @@ python3 del powerline_setup
 set rtp+=/usr/lib/python3.6/site-packages/powerline/bindings/vim
 set laststatus=2         " Always show status line
 set t_Co=256             " Use 256 colours
+set encoding=UTF-8
 
 " Hack to allow Alt key usage
 let c='a'
@@ -94,19 +95,33 @@ command! Fix         YcmCompleter FixIt
 let g:tex_flavor = 'latex'
 let g:vimtex_latexmk_continuous = 1
 
-" Git good!
+" Git good with the code!
 let g:gitgutter_terminal_reports_focus=0
 let g:gitgutter_map_keys=0
 set updatetime=100
-let g:gitgutter_sign_added = '✚'
-let g:gitgutter_sign_modified = '✹'
-let g:gitgutter_sign_removed = '✖️'
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '~'
+let g:gitgutter_sign_removed = '-'
 command! Stage GitGutterStageHunk
 command! Undo  GitGutterUndoHunk
 highlight link GitGutterAdd          Function
 highlight link GitGutterChange       Special
 highlight link GitGutterDelete       Tag
 highlight link GitGutterChangeDelete Special
+
+" Git good in the tree!
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "~",
+    \ "Staged"    : "+",
+    \ "Untracked" : "■",
+    \ "Renamed"   : "⇒",
+    \ "Unmerged"  : "≈",
+    \ "Deleted"   : "-",
+    \ "Dirty"     : "~",
+    \ "Clean"     : "✓",
+    \ "Ignored"   : "□",
+    \ "Unknown"   : "‽"
+    \ }
 
 " Commenting
 filetype plugin on
