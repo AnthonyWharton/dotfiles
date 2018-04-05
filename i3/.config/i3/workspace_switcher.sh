@@ -1,6 +1,6 @@
 #!/bin/bash
 # Quick and dirty way to swap two workspaces in the i3 window manager.
-# Ensures you have depndencies, but error handle very well.
+# Ensures you have depndencies, but doesn't error handle very well.
 #
 # Usage:
 #   ./workspace_switcher [--stay] WORKSPACE_NAME
