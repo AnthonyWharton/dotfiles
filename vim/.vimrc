@@ -91,6 +91,9 @@ command! Declaration YcmCompleter GoToDeclaration
 command! Definition  YcmCompleter GoToDefinition
 command! Fix         YcmCompleter FixIt
 
+" Fix for OpenCL files
+au BufReadPost *.cl set syntax=c
+
 " Latex 
 let g:tex_flavor = 'latex'
 let g:vimtex_latexmk_continuous = 1
