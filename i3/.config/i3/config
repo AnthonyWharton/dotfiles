@@ -222,7 +222,8 @@ exec compton --config ~/.config/compton/config.cfg
 
 # Lock Screen Stuff
 #bindsym $mod+l exec i3lock -c 333333
-bindsym $mod+l exec i3lock -i ~/.config/i3/lock.png
+#bindsym $mod+l exec i3lock -i ~/.config/i3/lock.png
+bindsym $mod+l exec i3lock-next "" "SauceCodePro Nerd Font" 32
 
 # Who even need borders?
 hide_edge_borders both
