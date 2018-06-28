@@ -21,5 +21,8 @@ dbus-update-activation-environment --all
 # bad at life
 setxkbmap gb
 
+# Load environment variabled into system d user mode
+/etc/X11/xinit/xinitrc.d/50-systemd-user.sh
+
 # Finally we're done, launch i3
 i3

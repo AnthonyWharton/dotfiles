@@ -1,0 +1,15 @@
+[Unit]
+Description=Lock Screen Before Sleep/Suspend
+Before=sleep.target
+Before=suspend.target
+
+[Service]
+User=anthony
+Type=simple
+Environment=DISPLAY=:0
+ExecStart=/home/anthony/.config/i3/lock.sh
+ExecStartPost=/usr/bin/sleep 1
+
+[Install]
+WantedBy=sleep.target
+WantedBy=suspend.target
