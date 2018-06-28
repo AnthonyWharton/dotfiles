@@ -45,6 +45,9 @@ export EDITOR='vim'
 # Stop zsh from sharing history
 setopt no_share_history
 
+# Disable ZSH's time command and use the standard time command
+disable -r time
+
 # Custom end of line marker (if no new line at end of output it will write \n and add one)
 setopt PROMPT_CR
 setopt PROMPT_SP
@@ -76,6 +79,8 @@ alias cp='cp -iv'
 alias rm='rm -iv'
 alias df='df -h'
 
+alias time='time -p ' # -p for POSIX output
+
 alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -97,9 +102,7 @@ alias gitFUCK='git reset --hard HEAD~'
 
 alias tm='~/Documents/Misc/Scripts/tmux-session.sh'
 
-alias work='cd ~/Documents/University-Work/Year-3/'
-alias tempo='cd ~/Documents/University-Work/Year-3/Games-Project/ProjectTempo-Alt'
-alias tempobin='cd ~/Documents/University-Work/Year-3/Games-Project/ProjectTempo-Alt/bin'
+alias work='cd ~/Documents/Projects/UltraHorizon/UH-Net-Android'
 alias make='make -j4'
 
 alias ark='ssh -X -i ~/.ssh/privateArk -p 9669 anthony@ark.itgr.uk'
