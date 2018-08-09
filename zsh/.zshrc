@@ -8,7 +8,7 @@ export ZSH=/usr/share/oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 # Powerline
-. /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+source /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
@@ -28,7 +28,7 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
- HIST_STAMPS="yyyy-mm-dd"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -113,14 +113,16 @@ alias starwars='telnet towel.blinkenlights.nl'
 alias dc='sudo killall openvpn'
 alias rc='sudo openvpn --config /etc/openvpn/UltraHorizon.ovpn --log /var/log/openvpn.log &'
 
+# Goodbye XPD 13 9350 (QHD) wherever you may be...
+
 # To Do: Someday turn this into a nice wrapper function
-alias monitor-reset='xrandr --output eDP-1 --auto --output DP-1 --off; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
-alias monitor-1080p-above='xrandr --fb 3200x3420 --output eDP-1 --mode 3200x1800 --pos 0x1620 --output DP-1 --mode 1920x1080 --pos 160x0 --scale-from 2880x1620; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
-alias monitor-1080p-above2='xrandr --fb 3200x2880 --output eDP-1 --mode 3200x1800 --pos 0x1080 --output DP-1 --mode 1920x1080 --scale 1x1 --pos 640x0; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
-alias monitor-1080p-right='xrandr --fb 6080x1800 --output eDP-1 --mode 3200x1800 --pos 0x0 --output DP-1 --mode 1920x1080 --pos 3200x90 --scale-from 2880x1620; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
-alias monitor-1080p-right2='xrandr --fb 5120x1800 --output eDP-1 --mode 3200x1800 --pos 0x0 --output DP-1 --mode 1920x1080 --pos 3200x640 --scale 1x1; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
-alias monitor-1080p-left='xrandr --fb 6080x1800 --output eDP-1 --mode 3200x1800 --pos 2880x0 --output DP-1 --mode 1920x1080 --pos 0x90 --scale-from 2880x1620; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
-alias monitor-1080p-left2='xrandr --fb 5120x1800 --output eDP-1 --mode 3200x1800 --pos 1920x0 --output DP-1 --mode 1920x1080 --pos 0x640 --scale 1x1; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
+# alias monitor-reset='xrandr --output eDP-1 --auto --output DP-1 --off; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
+# alias monitor-1080p-above='xrandr --fb 3200x3420 --output eDP-1 --mode 3200x1800 --pos 0x1620 --output DP-1 --mode 1920x1080 --pos 160x0 --scale-from 2880x1620; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
+# alias monitor-1080p-above2='xrandr --fb 3200x2880 --output eDP-1 --mode 3200x1800 --pos 0x1080 --output DP-1 --mode 1920x1080 --scale 1x1 --pos 640x0; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
+# alias monitor-1080p-right='xrandr --fb 6080x1800 --output eDP-1 --mode 3200x1800 --pos 0x0 --output DP-1 --mode 1920x1080 --pos 3200x90 --scale-from 2880x1620; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
+# alias monitor-1080p-right2='xrandr --fb 5120x1800 --output eDP-1 --mode 3200x1800 --pos 0x0 --output DP-1 --mode 1920x1080 --pos 3200x640 --scale 1x1; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
+# alias monitor-1080p-left='xrandr --fb 6080x1800 --output eDP-1 --mode 3200x1800 --pos 2880x0 --output DP-1 --mode 1920x1080 --pos 0x90 --scale-from 2880x1620; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
+# alias monitor-1080p-left2='xrandr --fb 5120x1800 --output eDP-1 --mode 3200x1800 --pos 1920x0 --output DP-1 --mode 1920x1080 --pos 0x640 --scale 1x1; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
 
 #####
 
