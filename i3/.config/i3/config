@@ -257,7 +257,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id redshift
 
 # Mad google casty thing
-exec --no-startup-id pulseaudio-dlna
+# exec --no-startup-id pulseaudio-dlna
 
 # Stop pulling focus upon opening any new window - used for some spammy editing
 # in a hackathon once that involved lots of windows opening and closing.
