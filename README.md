@@ -54,5 +54,6 @@ unless the package is from the AUR in which case it is labelled as such.
  - redshift
  - nm-applet
  - playerctl
+ - jq
 
 _And more.. I still have plenty to add I am sure._
