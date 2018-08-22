@@ -14,7 +14,7 @@
 
 # Check for dependencies
 if ! [ -x "$(command -v jq)" ]; then
-	notify-send --urgency=critical "Unable to swap workspace!" 
+	notify-send --urgency=critical "Unable to swap workspace!" \
 	                               "You must have 'jq' installed."
 	exit 1
 fi
