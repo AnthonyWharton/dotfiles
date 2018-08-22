@@ -15,8 +15,8 @@ alert-high     = #e01a4f
 
 [bar/main]
 width = 100%
-height = 56
-monitor = eDP-1
+height = 32
+monitor = eDP1
 
 ;separator = |
 
@@ -36,7 +36,7 @@ padding-right = 1
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = SauceCodePro Nerd Font Mono:style=Medium:pixelsize=22;0
+font-0 = SauceCodePro Nerd Font Mono:style=Medium:pixelsize=12;0
 
 modules-left = i3 xwindow
 modules-center = 
@@ -155,7 +155,7 @@ bar-used-empty-foreground = ${colors.inactive}
 
 [module/wlan]
 type = internal/network
-interface = wlp58s0
+interface = wlp2s0
 interval = 1
 
 format-connected = <ramp-signal> <label-connected>
