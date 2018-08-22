@@ -12,14 +12,7 @@
 set $mod Mod4
 
 # Font Selection
-font pango:SauceCodePro Nerd Font 9
-
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
+font pango:SauceCodePro Nerd Font 12
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -39,15 +32,7 @@ set $text-color             #f3f4f5
 set $inactive-text-color    #676e7d
 set $urgent-bg-color        #e53935
 
-# start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
-
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-
-# start rofi (another program launcher)
+# start rofi (a program launcher)
 bindsym $mod+d exec ~/.config/i3/rofi.sh
 
 # change focus
@@ -86,7 +71,7 @@ bindsym $mod+Shift+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+z focus child
 
 # set variable names for all workspaces
 set $workspace1  1
@@ -195,27 +180,13 @@ client.urgent           #0f0     $urgent-bg-color       $urgent-bg-color     $ur
 #exec_always --no-startup-id "killall -q polybar; polybar main & disown"
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
-#bar {
-#        status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
-#        tray_output primary
-#        position top
-#        colors {
-#		    background $bg-color
-#	     	separator #757575
-#		    #                  border             background         text
-#		    focused_workspace  $bg-color          $bg-color          $text-color
-#		    inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-#		    urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-#	    }
-#}
-
 ################################################################################
 # Custom Addition Config                                                       #
 ################################################################################
 
 # Used with i3gaps
 new_window pixel 3
-gaps inner 16
+gaps inner 12
 
 # Sort out Graphics
 exec compton --config ~/.config/compton/config.cfg
@@ -234,7 +205,7 @@ exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/volume.sh -u
 bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/volume.sh -d
-bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/volume.sh -t
+bindsym XF86AudioMute        exec --no-startup-id ~/.config/i3/volume.sh -t
 
 # Sreen brightness controls
 # Provided by: https://github.com/haikarainen/light
@@ -242,10 +213,10 @@ bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPlay  exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioNext  exec playerctl next
+bindsym XF86AudioPrev  exec playerctl previous
 
 # Screenshot Bindings
 bindsym --release Print exec maim -s /tmp/shot.png && xclip -selection c -t image/png /tmp/shot.png && rm -f /tmp/shot.png
