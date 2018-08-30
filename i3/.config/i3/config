@@ -183,12 +183,6 @@ bindsym $mod+Control+0 exec "~/.config/i3/workspace_switcher.sh 10"
 bindsym $mod+Control+Shift+Down move workspace to output eDP-1
 bindsym $mod+Control+Shift+Up   move workspace to output DP-1
 
-
-# bar configuration
-#exec_always --no-startup-id "killall -q polybar; polybar main & disown"
-exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec_always --no-startup-id ~/.config/stalonetray/launch.sh
-
 ######
 #### Appearance/Custom i3 options
 ######
@@ -201,6 +195,14 @@ hide_edge_borders both
 ######
 #### Startup Items
 ######
+
+## Start bar
+#exec_always --no-startup-id "killall -q polybar; polybar main & disown"
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id ~/.config/stalonetray/launch.sh
+
+## Sort out keyboard
+exec_always --no-startup-id setxkbmap gb
 
 ## Sort out Graphics
 exec compton --config ~/.config/compton/config.cfg
