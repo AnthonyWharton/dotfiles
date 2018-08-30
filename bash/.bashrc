@@ -48,22 +48,15 @@ alias gitFUCK='git reset --hard HEAD~'
 
 alias tm='~/Documents/Misc/Scripts/tmux-session.sh'
 
-alias work='cd ~/Documents/University-Work/Year-2/'
-alias cnc='cd ~/Documents/University-Work/Year-2/Concurrent-Computing/'
-alias lan='cd ~/Documents/University-Work/Year-2/Language-Engineering/'
-alias spe='cd ~/Documents/University-Work/Year-2/Software-Product-Engineering/'
+alias work='cd ~/Documents/Projects/UltraHorizon/UH-Net-Android/'
 
-alias ark='ssh -X -i ~/Documents/Misc/SSH/privateArk -p 9669 anthony@ark.itgr.uk'
-alias arks='sftp -i ~/Documents/Misc/SSH/privateArk -P 9669 anthony@ark.itgr.uk'
-alias ryn='ssh -X -i ~/Documents/Misc/SSH/privateDroplets -l ant -p 9669 ant@ryn.itgr.uk'
-alias ryns='sftp -i ~/Documents/Misc/SSH/privateDroplets -P 9669 ant@ryn.itgr.uk'
+alias ark='ssh -X -i ~/.ssh/privateArk -p 9669 anthony@ark.itgr.uk'
+alias arks='sftp -i ~/.ssh/privateArk -P 9669 anthony@ark.itgr.uk'
 
 alias starwars='telnet towel.blinkenlights.nl'
 
 alias dc='sudo killall openvpn'
 alias rc='sudo openvpn --config /etc/openvpn/UltraHorizon-EC-Auth.conf --writepid /run/openvpn/openvpn.pid --log /var/log/openvpn.log &'
-
-export QT_QPA_PLATFORMTHEME=gtk2
 
 ################################################################################
 ### From Ubuntu's .bashrc (Edited)                                           ###
