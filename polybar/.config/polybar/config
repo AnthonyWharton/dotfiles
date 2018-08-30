@@ -28,23 +28,22 @@ overline-color = ${colors.primary}
 underline-size = 3 
 underline-color = ${colors.primary}
 
-border-bottom = 0
+border-bottom-size = 0
 border-bottom-color = ${colors.background-alt}
 
 padding-left = 0
-padding-right = 1
+padding-right = 10
 module-margin-left = 1
 module-margin-right = 1
 
 font-0 = SauceCodePro Nerd Font Mono:style=Medium:pixelsize=12;0
 
-modules-left = i3 xwindow
+modules-left = i3
 modules-center = 
 modules-right = backlight volume cpu memory wlan battery date
 
-tray-position = right
-tray-padding = 1
-tray-maxsize = 64
+; Using stalonetray because polybar's tray is glitchy af
+tray-position =
 
 wm-restack = i3
 scroll-up = i3wm-wsnext
@@ -54,7 +53,7 @@ scroll-down = i3wm-wsprev
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:45:...%
+label = %title:0:56:...%
 
 ;=============================================================================;
 
@@ -182,7 +181,7 @@ format-underline = ${colors.primary}
 ;=============================================================================;
 
 [module/volume]
-type = internal/volume
+type = internal/alsa
 
 master-mixer = Master
 ;speaker-mixer = Speaker
