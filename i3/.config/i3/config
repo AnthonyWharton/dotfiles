@@ -219,7 +219,7 @@ exec --no-startup-id redshift &
 ######
 
 ## Launch lock screen
-bindsym $mod+l exec i3lock-next "" "SauceCodePro Nerd Font" 32
+bindsym $mod+l exec ~/.config/i3/lock.sh
 
 ## Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/volume.sh -u
