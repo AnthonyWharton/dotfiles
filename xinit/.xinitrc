@@ -15,6 +15,8 @@ xset s noblank
 export BROWSER=/usr/bin/firefox
 export EDITOR=vim
 
+export QT_QPA_PLATFORMTHEME='gtk2'
+
 # Check dbus is running and check envrionment variables are all good
 # This should fix most of gnome/gtk based scaling with the above as well!
 eval `dbus-launch --sh-syntax`
