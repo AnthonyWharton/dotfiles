@@ -48,7 +48,7 @@ nmap <silent> <A-k>     :wincmd k<CR>
 nmap <silent> <A-j>     :wincmd j<CR>
 nmap <silent> <A-h>     :wincmd h<CR>
 nmap <silent> <A-l>     :wincmd l<CR>
-map <C-n> :NERDTreeToggle<CR>
+map  <C-\>              :NERDTreeToggle<CR>
 autocmd VimEnter * NERDTree  " Autostart NERDTree
 autocmd VimEnter * wincmd p  " And then focus on file
 autocmd BufWinEnter * NERDTreeMirror
