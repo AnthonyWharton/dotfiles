@@ -75,7 +75,10 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 " More debug
 let g:ycm_log_level = 'debug'
 " Set to python3 explicitly
+let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
+" Set to rust explicitly
+let g:ycm_path_rust_src_path = '~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 " Start completion from the first character
 let g:ycm_min_num_of_chars_for_completion = 1
 " Don't cache completion items
@@ -216,4 +219,4 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 set novisualbell
 set pastetoggle=<F2>     " Paste mode when pressing F2 (disables smart tab do-da's)
 set mouse=a              " We like using the mouse (filthy cretin)
-set scrolloff=999        " Broken Typewriter mode
+set scrolloff=100        " Broken Typewriter mode
