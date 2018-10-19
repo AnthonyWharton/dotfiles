@@ -34,7 +34,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(cabal git pip sudo systemd wd)
+plugins=(cp extract git pip sudo systemd wd)
 
 # User configuration
 export MANPATH="/usr/local/man:$MANPATH"
@@ -54,12 +54,13 @@ setopt PROMPT_SP
 export PROMPT_EOL_MARK=" %{$bg[red]%}%{$fg[white]%}\n%{$reset_color%}"
 
 # Start up the ssh-agent
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent > ~/.ssh-agent.pid
-fi
-if [[ "$SSH_AGENT_PID" == "" ]]; then
-    eval "$(<~/.ssh-agent.pid)" > /dev/null
-fi
+SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+# if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+#     ssh-agent > ~/.ssh-agent.pid
+# fi
+# if [[ "$SSH_AGENT_PID" == "" ]]; then
+#     eval "$(<~/.ssh-agent.pid)" > /dev/null
+# fi
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -102,7 +103,9 @@ alias gitFUCK='git reset --hard HEAD~'
 
 alias tm='~/Documents/Misc/Scripts/tmux-session.sh'
 
-alias work='cd ~/Documents/Projects/UltraHorizon/UH-Net-Android'
+alias work='cd ~/Documents/University-Work/Year-4'
+alias uh='cd ~/Documents/Projects/UltraHorizon/UH-Net-Android'
+
 alias make='make -j4'
 
 alias ark='ssh -X -i ~/.ssh/privateArk -p 9669 anthony@ark.itgr.uk'
@@ -116,8 +119,8 @@ alias rc='sudo openvpn --config /etc/openvpn/UltraHorizon.ovpn --log /var/log/op
 # Goodbye XPD 13 9350 (QHD) wherever you may be...
 
 # To Do: Someday turn this into a nice wrapper function
-# alias monitor-reset='xrandr --output eDP-1 --auto --output DP-1 --off; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
-# alias monitor-1080p-above='xrandr --fb 3200x3420 --output eDP-1 --mode 3200x1800 --pos 0x1620 --output DP-1 --mode 1920x1080 --pos 160x0 --scale-from 2880x1620; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
+alias monitor-reset='xrandr --output eDP1 --auto --output DP1 --off; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
+alias monitor-1080p-above='xrandr --output eDP1 --mode 1920x1080 --pos 0x1080 --output DP1 --mode 1920x1080 --pos 0x0; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
 # alias monitor-1080p-above2='xrandr --fb 3200x2880 --output eDP-1 --mode 3200x1800 --pos 0x1080 --output DP-1 --mode 1920x1080 --scale 1x1 --pos 640x0; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
 # alias monitor-1080p-right='xrandr --fb 6080x1800 --output eDP-1 --mode 3200x1800 --pos 0x0 --output DP-1 --mode 1920x1080 --pos 3200x90 --scale-from 2880x1620; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
 # alias monitor-1080p-right2='xrandr --fb 5120x1800 --output eDP-1 --mode 3200x1800 --pos 0x0 --output DP-1 --mode 1920x1080 --pos 3200x640 --scale 1x1; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
@@ -177,30 +180,4 @@ export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
-
-#####
-
-# Neat way to extract archives.
-extract() {
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xvjf $1    ;;
-      *.tar.gz)    tar xvzf $1    ;;
-      *.tar.xz)    tar xvf $1    ;;
-      *.bz2)       bunzip2 $1     ;;
-      *.rar)       unrar x $1     ;;
-      *.gz)        gunzip $1      ;;
-      *.tar)       tar xvf $1     ;;
-      *.tbz2)      tar xvjf $1    ;;
-      *.tgz)       tar xvzf $1    ;;
-      *.zip)       unzip $1       ;;
-      *.Z)         uncompress $1  ;;
-      *.7z)        7z x $1        ;;
-      *)           echo "don't know how to extract '$1'..." ;;
-    esac
-  else
-    echo "'$1' is not a valid file!"
-  fi
-}
-
 
