@@ -48,7 +48,7 @@ alias gitFUCK='git reset --hard HEAD~'
 
 alias tm='~/Documents/Misc/Scripts/tmux-session.sh'
 
-alias work='cd ~/Documents/Projects/UltraHorizon/UH-Net-Android/'
+alias work='cd ~/Documents/University-Work/Year-4/'
 
 alias ark='ssh -X -i ~/.ssh/privateArk -p 9669 anthony@ark.itgr.uk'
 alias arks='sftp -i ~/.ssh/privateArk -P 9669 anthony@ark.itgr.uk'
@@ -57,6 +57,22 @@ alias starwars='telnet towel.blinkenlights.nl'
 
 alias dc='sudo killall openvpn'
 alias rc='sudo openvpn --config /etc/openvpn/UltraHorizon-EC-Auth.conf --writepid /run/openvpn/openvpn.pid --log /var/log/openvpn.log &'
+
+#####
+
+# Overloading SSH with custom endpoint to bluecrystal
+function ssh() {
+    case $1 in
+        bluecrystalp3 ) ssh snowy -t "ssh bluecrystalp3" ;;
+        bluecrystalp4 ) ssh snowy -t "ssh bluecrystalp4" ;;
+        * ) command ssh $@ ;;
+    esac
+}
+
+# Connect to SSH Agent
+SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+
+#####
 
 ################################################################################
 ### From Ubuntu's .bashrc (Edited)                                           ###
