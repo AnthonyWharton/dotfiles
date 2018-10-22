@@ -14,7 +14,7 @@
 set $mod Mod4
 
 ## Font Selection
-font pango:SauceCodePro Nerd Font 12
+font pango:SauceCodePro Nerd Font 14
 
 ## Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -199,6 +199,7 @@ hide_edge_borders both
 ## Start bar
 #exec_always --no-startup-id "killall -q polybar; polybar main & disown"
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+# exec --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id ~/.config/stalonetray/launch.sh
 
 ## Sort out keyboard

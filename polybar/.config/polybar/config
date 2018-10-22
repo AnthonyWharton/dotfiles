@@ -40,7 +40,7 @@ font-0 = SauceCodePro Nerd Font Mono:style=Medium:pixelsize=12;0
 
 modules-left = i3
 modules-center = 
-modules-right = backlight volume cpu memory wlan battery date
+modules-right = backlight volume cpu memory wlan battery date tray
 
 ; Using stalonetray because polybar's tray is glitchy af
 tray-position =
@@ -94,6 +94,19 @@ format = <label>
 format-foreground = ${colors.foreground}
 format-underline = ${colors.primary}
 label =  %output%
+
+;=============================================================================;
+
+[module/tray]
+type = custom/script
+exec = stalonetray & nm-applet # Ew yes I know, Sorry..
+exec-if = ! pgrep -x stalonetray
+interval = 1
+
+format =
+format-foreground =
+format-underline =
+label =
 
 ;=============================================================================;
 
