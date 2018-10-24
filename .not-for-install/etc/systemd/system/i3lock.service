@@ -7,7 +7,7 @@ Before=suspend.target
 User=anthony
 Type=simple
 Environment=DISPLAY=:0
-ExecStart=/home/anthony/.config/i3/lock.sh
+ExecStart=/home/anthony/.config/scripts/lock.sh
 ExecStartPost=/usr/bin/sleep 1
 
 [Install]
