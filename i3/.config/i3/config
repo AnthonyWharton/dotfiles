@@ -242,9 +242,12 @@ bindsym XF86AudioPrev  exec playerctl previous
 ## Screenshot Bindings
 bindsym --release Print exec maim -s /tmp/shot.png && xclip -selection c -t image/png /tmp/shot.png && rm -f /tmp/shot.png
 
+## Run some Android Studio window's in floating mode
 for_window [title="Android Virtual Device Manager"] floating enable
 for_window [title="^Android Emulator.*"           ] floating enable
 
+## Stop x11-ssh-askpass pulling focus, and remove border
+for_window [class="SshAskpass"] border pixel 0
 no_focus [class="SshAskpass"]
 
 ######
