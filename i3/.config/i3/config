@@ -132,16 +132,16 @@ set $workspace9  9
 set $workspace10 10
 
 ## Set workspace default display output (my laptop screen)
-workspace $workspace1  output eDP-1 
-workspace $workspace2  output eDP-1 
-workspace $workspace3  output eDP-1 
-workspace $workspace4  output eDP-1 
-workspace $workspace5  output eDP-1 
-workspace $workspace6  output eDP-1 
-workspace $workspace7  output eDP-1 
-workspace $workspace8  output eDP-1 
-workspace $workspace9  output eDP-1 
-workspace $workspace10 output eDP-1
+workspace $workspace1  output eDP1
+workspace $workspace2  output eDP1
+workspace $workspace3  output eDP1
+workspace $workspace4  output eDP1
+workspace $workspace5  output eDP1
+workspace $workspace6  output eDP1
+workspace $workspace7  output eDP1
+workspace $workspace8  output eDP1
+workspace $workspace9  output eDP1
+workspace $workspace10 output eDP1
 
 ## Switch to workspace hotkeys
 bindsym $mod+1 workspace $workspace1
@@ -180,8 +180,8 @@ bindsym $mod+Control+9 exec "~/.config/scripts/workspace_switcher.sh 9"
 bindsym $mod+Control+0 exec "~/.config/scripts/workspace_switcher.sh 10"
 
 ## Move workspace between laptop screen and external monitor hotkeys 
-bindsym $mod+Control+Shift+Down move workspace to output eDP-1
-bindsym $mod+Control+Shift+Up   move workspace to output DP-1
+bindsym $mod+Control+Shift+Down move workspace to output eDP1
+bindsym $mod+Control+Shift+Up   move workspace to output DP1
 
 ######
 #### Appearance/Custom i3 options
@@ -244,6 +244,8 @@ bindsym --release Print exec maim -s /tmp/shot.png && xclip -selection c -t imag
 
 for_window [title="Android Virtual Device Manager"] floating enable
 for_window [title="^Android Emulator.*"           ] floating enable
+
+no_focus [class="SshAskpass"]
 
 ######
 #### Graveyard options that could be useful someday
