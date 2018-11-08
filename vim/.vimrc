@@ -53,6 +53,7 @@ autocmd VimEnter * NERDTree  " Autostart NERDTree
 autocmd VimEnter * wincmd p  " And then focus on file
 autocmd BufWinEnter * NERDTreeMirror
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd TabLeave * if bufname('') =~ "Nerd_tree" | wincmd l | endif
 
 " Quicker Tab Shortcuts
 nmap <A-1> 1gt
