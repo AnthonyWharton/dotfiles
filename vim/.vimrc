@@ -1,4 +1,5 @@
 " Powerline
+" -
 let g:powerline_pycmd = "py3" " Use Python 3
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
@@ -33,6 +34,8 @@ call plug#begin('~/.vim/vim-plug-plugins')
     Plug 'airblade/vim-gitgutter'
     Plug 'junegunn/vim-peekaboo'
     Plug 'rccoles/vim-markaboo'
+    Plug 'inkarkat/vim-spellcheck'    " Spell Checking
+    Plug 'vim-scripts/ingo-library'   " Required for Spell Checking
 call plug#end()
 
 " Tree
@@ -66,7 +69,7 @@ nmap <A-7> 7gt
 nmap <A-8> 8gt
 nmap <A-9> 9gt
 
-" YCM Autocompletion
+" YCM
 " Don't ask to load config - maybe insecure
 let g:ycm_confirm_extra_conf = 0
 " Allow jump to erros using :lne and :lp
@@ -88,17 +91,42 @@ let g:ycm_cache_omnifunc = 0
 let g:ycm_seed_identifiers_with_syntax = 1
 " Let g:ycm_show_diagnostics_ui = 0
 let g:ycm_autoclose_preview_window_after_insertion = 1
-" Check on save
-autocmd BufWritePost * YcmForceCompileAndDiagnostics
+" Open goto commands in a new tab
+let g:ycm_goto_buffer_command="new-tab"
 
+" hi YcmErrorSign guifg=#F92672 guibg=#232526
+" hi YcmWarningSign guifg=#FD971F guibg=#232526
+
+" Lint file on save
+autocmd BufWritePost *.c,*.h,*.cpp,*.py call RunCheck()
+
+function RunCheck()
+	YcmForceCompileAndDiagnostics
+	YcmDiags
+	if (youcompleteme#GetErrorCount() == 0 && youcompleteme#GetWarningCount() == 0) | lclose | else | ll | endif
+endfunction
+
+let g:ycm_open_loclist_on_ycm_diags=1
+
+function! s:CustomizeYcmLocationWindow()
+	wincmd p
+endfunction
+
+" autocmd User YcmLocationOpened call s:CustomizeYcmLocationWindow()
+
+" Commands
+command! Include     YcmCompleter GoToInclude
 command! Declaration YcmCompleter GoToDeclaration
 command! Definition  YcmCompleter GoToDefinition
+command! References  YcmCompleter GoToReferences
+command! Type        YcmCompleter GetType
+command! Doc         YcmCompleter GetDoc
 command! Fix         YcmCompleter FixIt
 
 " Fix for OpenCL files
 au BufReadPost *.cl set syntax=c
 
-" Latex 
+" Latex
 let g:tex_flavor = 'latex'
 let g:vimtex_latexmk_continuous = 1
 
@@ -118,17 +146,17 @@ highlight link GitGutterChangeDelete Special
 
 " Git good in the tree!
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "~",
-    \ "Staged"    : "+",
-    \ "Untracked" : "■",
-    \ "Renamed"   : "⇒",
-    \ "Unmerged"  : "≈",
-    \ "Deleted"   : "-",
-    \ "Dirty"     : "~",
-    \ "Clean"     : "✓",
-    \ "Ignored"   : "□",
-    \ "Unknown"   : "‽"
-    \ }
+	\ "Modified"  : "~",
+	\ "Staged"    : "+",
+	\ "Untracked" : "■",
+	\ "Renamed"   : "⇒",
+	\ "Unmerged"  : "≈",
+	\ "Deleted"   : "-",
+	\ "Dirty"     : "~",
+	\ "Clean"     : "✓",
+	\ "Ignored"   : "□",
+	\ "Unknown"   : "‽"
+	\ }
 
 " Commenting
 filetype plugin on
@@ -140,6 +168,15 @@ nmap <silent> <C-_> gcc
 imap <silent> <C-_> <C-o>gcc
 vmap <silent> <C-_> gc
 
+" Strip trailing whitespace on file save
+fun! StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+autocmd BufWritePost * :call StripTrailingWhitespaces()
+
 " Peekaboo for paste
 let g:peekaboo_window = 'vert bel 50new'
 
@@ -148,31 +185,24 @@ let g:markaboo_window = 'vert bel 50new'
 let g:markaboo_enable_special = 1
 let g:markaboo_marks_special = '."'''
 
-" I need to stop pasting these damn things @RcColes gives me
-fu! DeleteInactiveBufs()
-    "From tabpagebuflist() help, get a list of all buffers in all tabs
-    let tablist = []
-    for i in range(tabpagenr('$'))
-        call extend(tablist, tabpagebuflist(i + 1))
-    endfor
-
-    "Below originally inspired by Hara Krishna Dara and Keith Roberts
-    "http://tech.groups.yahoo.com/group/vim/message/56425
-    let nWipeouts = 0
-    for i in range(1, bufnr('$'))
-        if bufexists(i) && !getbufvar(i,"&mod") && index(tablist, i) == -1
-        " bufno exists AND isn't modified AND isn't in the list of buffers open
-        " in windows and tabs
-            silent exec 'bwipeout' i
-            let nWipeouts = nWipeouts + 1
-        endif
-    endfor
+" Clears the QuickfixLists
+function ClearQuickfixList()
+	call setqflist([])
 endfunction
-autocmd WinEnter * call DeleteInactiveBufs()
+
+command! ClearQuickfixList call ClearQuickfixList()
+
+" Spellcheck
+autocmd FileType tex setlocal spell spelllang=en_gb
+autocmd FileType txt setlocal spell spelllang=en_gb
+autocmd FileType md setlocal spell spelllang=en_gb
+autocmd BufWritePost *.txt,*.tex,*.md | call ClearQuickfixList() | SpellCheck! | cw
+let g:SpellCheck_DefineAuxiliaryCommands = 0
+let g:SpellCheck_DefineQuickfixMappings = 0
 
 " I've now pasted so many of @RcColes' things that I need fixes for the fixes
-set t_RV=
-autocmd VimEnter * redraw!
+" set t_RV=
+" autocmd VimEnter * redraw!
 
 " Indentation
 set autoindent           " Use auto indentation
@@ -205,9 +235,10 @@ set number               " Line numbers are great
 set title                " Change the terminal's title
 set wildmenu             " Fancy autocompletion
 syntax on                " Use syntax highlighting (assuming terminal has colour support)
-colorscheme adventurous  " Use in-built elflord colourscheme
+syntax spell toplevel
+colorscheme adventurous
 " 80 Character ENFORCING
-let &colorcolumn=join(range(81,999),",")
+let &colorcolumn="80,".join(range(100,999),",")
 set cursorline
 
 " Map :W to sudo write
