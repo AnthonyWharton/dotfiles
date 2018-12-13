@@ -1,0 +1,10 @@
+# This doesn't feel like the proper way to run this but the sodding thing won't
+# work with SYSTEMD_WANTS, so what do you expect me to do?! Be some sort of
+# magician or something.. No, I am no magician.
+# I have wasted far too much time on this...
+ACTION=="change", KERNELS=="card0", SUBSYSTEM=="drm", RUN+="/bin/systemctl restart monitor-hotplug.service"
+
+# Some old attempts that just don't work :'(
+# ACTION=="change", KERNELS=="card0", SUBSYSTEM=="drm", TAG+="systemd", ENV{SYSTEMD_READY}=0, ENV{SYSTEMD_WANTS}="monitor-hotplug.service"
+# ACTION=="change", KERNELS=="card0", SUBSYSTEM=="drm", TAG+="systemd", ENV{SYSTEMD_READY}=1, ENV{SYSTEMD_WANTS}="monitor-hotplug.service"
+#ACTION=="change", KERNELS=="card0", SUBSYSTEM=="drm", TAG+="systemd", ENV{SYSTEMD_WANTS}="monitor-hotplug.service", RUN+="/home/anthony/Desktop/test-notify"
