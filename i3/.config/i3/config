@@ -54,7 +54,7 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-## Toggle tiling / floating 
+## Toggle tiling / floating
 bindsym $mod+space floating toggle
 
 ## Change focus between tiling / floating windows
@@ -68,11 +68,11 @@ bindsym $mod+z focus child
 bindsym $mod+Shift+c reload
 
 ## Restart i3 inplace
-## (preserves your layout/session, can be used to upgrade i3) 
+## (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
 ## Exit i3 hotkey (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -f 'pango:SauceCodePro Nerd Font 12' -b 'Yes, exit i3' 'i3-msg exit'"
 
 ## Resize mode hotkeys
 ## These bindings trigger as soon as resize mode is entered
@@ -179,9 +179,11 @@ bindsym $mod+Control+8 exec "~/.config/scripts/workspace_switcher.sh 8"
 bindsym $mod+Control+9 exec "~/.config/scripts/workspace_switcher.sh 9"
 bindsym $mod+Control+0 exec "~/.config/scripts/workspace_switcher.sh 10"
 
-## Move workspace between laptop screen and external monitor hotkeys 
-bindsym $mod+Control+Shift+Down move workspace to output eDP1
-bindsym $mod+Control+Shift+Up   move workspace to output DP1
+## Move workspace between monitors hotkeys
+bindsym $mod+Control+Shift+Up    move workspace to output up
+bindsym $mod+Control+Shift+Down  move workspace to output down
+bindsym $mod+Control+Shift+Left  move workspace to output left
+bindsym $mod+Control+Shift+Right move workspace to output right
 
 ######
 #### Appearance/Custom i3 options
@@ -264,4 +266,4 @@ no_focus [class="SshAskpass"]
 ## Who knows what this is for.. Past Anthony sure does but it seems to just be
 ## a pain for current Anthony so it's going to be left passively aggressively
 ## commented out.
-# for_window [class="^.*"] border pixel 6 
+# for_window [class="^.*"] border pixel 6
