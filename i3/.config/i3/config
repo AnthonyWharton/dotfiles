@@ -200,7 +200,7 @@ hide_edge_borders both
 
 ## Start bar
 #exec_always --no-startup-id "killall -q polybar; polybar main & disown"
-exec_always --no-startup-id ~/.config/scripts/bar-launch.sh
+exec_always --no-startup-id ~/.config/scripts/launch-bar.sh
 # exec_always --no-startup-id ~/.config/scripts/launch.sh
 
 ## Sort out keyboard

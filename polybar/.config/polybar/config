@@ -25,7 +25,7 @@ foreground = ${colors.foreground}
 
 overline-size = 3
 overline-color = ${colors.primary}
-underline-size = 3 
+underline-size = 3
 underline-color = ${colors.primary}
 
 border-bottom-size = 0
@@ -39,7 +39,7 @@ module-margin-right = 1
 font-0 = SauceCodePro Nerd Font Mono:style=Medium:pixelsize=12;0
 
 modules-left = i3
-modules-center = 
+modules-center =
 modules-right = backlight volume cpu memory wlan battery date tray
 
 ; Using stalonetray because polybar's tray is glitchy af
@@ -99,7 +99,7 @@ label =  %output%
 
 [module/tray]
 type = custom/script
-exec = stalonetray & nm-applet # Ew yes I know, Sorry..
+exec = ~/.config/scripts/launch-tray.sh
 exec-if = ! pgrep -x stalonetray
 interval = 1
 
