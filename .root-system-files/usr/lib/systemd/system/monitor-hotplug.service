@@ -5,4 +5,4 @@ Description=Monitor hotplug event
 Type=simple
 Environment=DISPLAY=:0
 Environment=XAUTHORITY=/home/anthony/.Xauthority
-ExecStart=/home/anthony/Desktop/test
+ExecStart=/home/anthony/.config/scripts/monitor-hotplug.sh

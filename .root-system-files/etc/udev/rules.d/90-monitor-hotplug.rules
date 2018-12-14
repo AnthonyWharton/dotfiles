@@ -7,4 +7,4 @@ ACTION=="change", KERNELS=="card0", SUBSYSTEM=="drm", RUN+="/bin/systemctl resta
 # Some old attempts that just don't work :'(
 # ACTION=="change", KERNELS=="card0", SUBSYSTEM=="drm", TAG+="systemd", ENV{SYSTEMD_READY}=0, ENV{SYSTEMD_WANTS}="monitor-hotplug.service"
 # ACTION=="change", KERNELS=="card0", SUBSYSTEM=="drm", TAG+="systemd", ENV{SYSTEMD_READY}=1, ENV{SYSTEMD_WANTS}="monitor-hotplug.service"
-#ACTION=="change", KERNELS=="card0", SUBSYSTEM=="drm", TAG+="systemd", ENV{SYSTEMD_WANTS}="monitor-hotplug.service", RUN+="/home/anthony/Desktop/test-notify"
+# ACTION=="change", KERNELS=="card0", SUBSYSTEM=="drm", TAG+="systemd", ENV{SYSTEMD_WANTS}="monitor-hotplug.service", RUN+="/home/anthony/Desktop/test-notify"
