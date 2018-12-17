@@ -62,24 +62,25 @@ type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
+strip-wsnumbers = true
 
 label-mode-padding = 1
 label-mode-foreground = ${colors.foreground-alt}
 label-mode-background = ${colors.primary}
 
-label-focused = %index%
+label-focused = %name%
 label-focused-background = ${colors.background-alt}
 label-focused-underline = ${colors.primary}
 label-focused-padding = 1
 
-label-unfocused = %index%
+label-unfocused = %name%
 label-unfocused-padding = 1
 
-label-urgent = %index%
+label-urgent = %name%
 label-urgent-background = ${colors.alert-high}
 label-urgent-padding = 1
 
-label-visible = %index%
+label-visible = %name%
 label-visible-background = ${colors.background-alt}
 label-visible-padding = 1
 
