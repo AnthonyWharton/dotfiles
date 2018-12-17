@@ -130,6 +130,7 @@ set $workspace7  7
 set $workspace8  8
 set $workspace9  9
 set $workspace10 10
+set $workspaceP  20:P
 
 ## Set workspace default display output (my laptop screen)
 workspace $workspace1  output eDP1
@@ -142,6 +143,7 @@ workspace $workspace7  output eDP1
 workspace $workspace8  output eDP1
 workspace $workspace9  output eDP1
 workspace $workspace10 output eDP1
+workspace $workspaceP  output DP1
 
 ## Switch to workspace hotkeys
 bindsym $mod+1 workspace $workspace1
@@ -154,6 +156,7 @@ bindsym $mod+7 workspace $workspace7
 bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
+bindsym $mod+p workspace $workspaceP
 
 ## Move focused container to workspace hotkeys
 bindsym $mod+Shift+1 move container to workspace $workspace1
@@ -166,6 +169,7 @@ bindsym $mod+Shift+7 move container to workspace $workspace7
 bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
+bindsym $mod+Shift+p move container to workspace $workspaceP
 
 ## Switch focussed workspace with another workspace hotkeys
 bindsym $mod+Control+1 exec "~/.config/scripts/workspace_switcher.sh 1"
@@ -178,6 +182,7 @@ bindsym $mod+Control+7 exec "~/.config/scripts/workspace_switcher.sh 7"
 bindsym $mod+Control+8 exec "~/.config/scripts/workspace_switcher.sh 8"
 bindsym $mod+Control+9 exec "~/.config/scripts/workspace_switcher.sh 9"
 bindsym $mod+Control+0 exec "~/.config/scripts/workspace_switcher.sh 10"
+bindsym $mod+Control+p exec "~/.config/scripts/workspace_switcher.sh 20:P"
 
 ## Move workspace between monitors hotkeys
 bindsym $mod+Control+Shift+Up    move workspace to output up
