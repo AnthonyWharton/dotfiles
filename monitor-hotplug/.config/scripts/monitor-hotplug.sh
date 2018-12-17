@@ -19,3 +19,5 @@ fi
 echo "Running: ${run}"
 ${run}
 
+sleep 1
+feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg
