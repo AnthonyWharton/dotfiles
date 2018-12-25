@@ -1,10 +1,10 @@
-################################################################################
-## Anthony's Personal i3 Config                                               ##
-##                                                                            ##
-## For documentation refer to:                                                ##
-##  - https://i3wm.org/docs/userguide.html                                    ##
-##  - https://github.com/Airblader/i3                                         ##
-################################################################################
+###############################################################################
+## Anthony's Personal i3 Config                                              ##
+##                                                                           ##
+## For documentation refer to:                                               ##
+##  - https://i3wm.org/docs/userguide.html                                   ##
+##  - https://github.com/Airblader/i3                                        ##
+###############################################################################
 
 ######
 #### General Options and Bindings
@@ -93,6 +93,13 @@ mode "resize" {
 
 ## Enter Resize mode
 bindsym $mod+r mode "resize"
+
+# Set up custom bar
+bar {
+	output primary
+	i3bar_command ~/.config/scripts/launch-bar.sh
+	mode dock
+}
 
 ######
 #### Colour Options
@@ -191,22 +198,22 @@ bindsym $mod+Control+Shift+Left  move workspace to output left
 bindsym $mod+Control+Shift+Right move workspace to output right
 
 ######
-#### Appearance/Custom i3 options
+#### Appearance & Custom i3 options (from i3-gaps)
 ######
 
-## Used with i3gaps
-new_window pixel 3
-gaps inner 12
+# Set the window border size
+default_border pixel 3
+default_floating_border pixel 3
+
+## Turn off all edge borders
 hide_edge_borders both
+
+# i3 gaps sizes
+gaps inner 12
 
 ######
 #### Startup Items
 ######
-
-## Start bar
-#exec_always --no-startup-id "killall -q polybar; polybar main & disown"
-exec_always --no-startup-id ~/.config/scripts/launch-bar.sh
-# exec_always --no-startup-id ~/.config/scripts/launch.sh
 
 ## Sort out keyboard
 exec_always --no-startup-id setxkbmap gb
@@ -216,9 +223,6 @@ exec compton --config ~/.config/compton/config.cfg
 
 ## Display Wallpaper
 exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg &
-
-## Start WiFi Applet
-exec --no-startup-id nm-applet &
 
 ## Start redshift
 exec --no-startup-id redshift &
@@ -249,6 +253,10 @@ bindsym XF86AudioPrev  exec playerctl previous
 ## Screenshot Bindings
 bindsym --release Print exec maim -s /tmp/shot.png && xclip -selection c -t image/png /tmp/shot.png && rm -f /tmp/shot.png
 
+######
+#### Per Window Overrides
+######
+
 ## Run some Android Studio window's in floating mode
 for_window [title="Android Virtual Device Manager"] floating enable
 for_window [title="^Android Emulator.*"           ] floating enable
@@ -256,6 +264,9 @@ for_window [title="^Android Emulator.*"           ] floating enable
 ## Stop x11-ssh-askpass pulling focus, and remove border
 for_window [class="SshAskpass"] border pixel 0
 no_focus [class="SshAskpass"]
+
+# Stop trayer ever taking foxus
+no_focus [class="trayer"]
 
 ######
 #### Graveyard options that could be useful someday
