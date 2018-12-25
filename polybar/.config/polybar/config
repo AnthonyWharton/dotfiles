@@ -42,7 +42,7 @@ modules-left = i3
 modules-center =
 modules-right = backlight volume cpu memory wlan battery date tray
 
-; Using stalonetray because polybar's tray is glitchy af
+; Using custom tray as polybar's tray was being glitchy
 tray-position =
 
 wm-restack = i3
@@ -101,7 +101,7 @@ label =  %output%
 [module/tray]
 type = custom/script
 exec = ~/.config/scripts/launch-tray.sh
-exec-if = ! pgrep -x stalonetray
+exec-if = ! pgrep -x trayer
 interval = 1
 
 format =

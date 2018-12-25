@@ -4,4 +4,20 @@ if ! pgrep -x nm-applet; then
 	nm-applet &
 fi
 
-stalonetray
+trayer                      \
+	--edge top          \
+	--align right       \
+	--distancefrom top  \
+	--distance 4        \
+	--margin 4          \
+	--iconspacing 4     \
+	--widthtype pixel   \
+	--width 80          \
+	--heighttype pixel  \
+	--height 24         \
+	--SetDockType false \
+	--transparent true  \
+	--tint 0x222222     \
+	--alpha 0           \
+	--expand false      \
+	--monitor primary   \
