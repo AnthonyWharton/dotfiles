@@ -20,13 +20,13 @@ font pango:SauceCodePro Nerd Font 14
 floating_modifier $mod
 
 ## Start a terminal
-bindsym $mod+Return exec bash -c "WINIT_HIDPI_FACTOR=1.0 alacritty"
+bindsym $mod+Return exec --no-startup-id bash -c "WINIT_HIDPI_FACTOR=1.0 alacritty"
 
 ## Kill focused window
 bindsym $mod+Shift+q kill
 
 ## Start program launcher
-bindsym $mod+d exec ~/.config/scripts/rofi.sh
+bindsym $mod+d exec --no-startup-id ~/.config/scripts/rofi.sh
 
 ## Change window focus
 bindsym $mod+Left focus left
@@ -72,7 +72,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 ## Exit i3 hotkey (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -f 'pango:SauceCodePro Nerd Font 12' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -f 'pango:SauceCodePro Nerd Font 12' -b 'Yes, exit i3' 'i3-msg exit'"
 
 ## Resize mode hotkeys
 ## These bindings trigger as soon as resize mode is entered
@@ -212,27 +212,11 @@ hide_edge_borders both
 gaps inner 12
 
 ######
-#### Startup Items
-######
-
-## Sort out keyboard
-exec_always --no-startup-id setxkbmap gb
-
-## Sort out Graphics
-exec compton --config ~/.config/compton/config.cfg
-
-## Display Wallpaper
-exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg &
-
-## Start redshift
-exec --no-startup-id redshift &
-
-######
 #### Key Bindings
 ######
 
 ## Launch lock screen
-bindsym $mod+l exec ~/.config/scripts/lock.sh
+bindsym $mod+l exec --no-startup-id ~/.config/scripts/lock.sh
 
 ## Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/scripts/volume.sh -u
@@ -241,17 +225,17 @@ bindsym XF86AudioMute        exec --no-startup-id ~/.config/scripts/volume.sh -t
 
 ## Sreen brightness controls
 ## Provided by: https://github.com/haikarainen/light
-bindsym XF86MonBrightnessUp exec light -A 5
-bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86MonBrightnessUp   exec --no-startup-id light -A 5
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 
 ## Media player controls
-bindsym XF86AudioPlay  exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext  exec playerctl next
-bindsym XF86AudioPrev  exec playerctl previous
+bindsym XF86AudioPlay  exec --no-startup-id playerctl play
+bindsym XF86AudioPause exec --no-startup-id playerctl pause
+bindsym XF86AudioNext  exec --no-startup-id playerctl next
+bindsym XF86AudioPrev  exec --no-startup-id playerctl previous
 
 ## Screenshot Bindings
-bindsym --release Print exec maim -s /tmp/shot.png && xclip -selection c -t image/png /tmp/shot.png && rm -f /tmp/shot.png
+bindsym --release Print exec --no-startup-id maim -s /tmp/shot.png && xclip -selection c -t image/png /tmp/shot.png && rm -f /tmp/shot.png
 
 ######
 #### Per Window Overrides
@@ -267,6 +251,22 @@ no_focus [class="SshAskpass"]
 
 # Stop trayer ever taking foxus
 no_focus [class="trayer"]
+
+######
+#### Startup Items
+######
+
+## Sort out keyboard
+exec_always --no-startup-id setxkbmap gb
+
+## Sort out Graphics
+exec --no-startup-id compton -b --config ~/.config/compton/config.cfg
+
+## Display Wallpaper
+exec_always --no-startup-id ~/.config/scripts/set-background.sh
+
+## Start redshift
+exec --no-startup-id redshift &
 
 ######
 #### Graveyard options that could be useful someday
