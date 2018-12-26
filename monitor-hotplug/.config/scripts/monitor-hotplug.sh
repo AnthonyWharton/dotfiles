@@ -3,6 +3,9 @@
 # Find the status of the outputs
 dp1_status=$(cat /sys/devices/pci0000:00/0000:00:02.0/drm/card0/card0-DP-1/status)
 dp2_status=$(cat /sys/devices/pci0000:00/0000:00:02.0/drm/card0/card0-DP-2/status)
+
+echo "New hotplug event, DP1: ${dp1_status}, DP2: ${dp2_status}"
+
 # Command to be constructed
 run="xrandr --output eDP1 --auto --primary"
 
@@ -35,9 +38,8 @@ ${run}
 # If we have the dependency jq
 if [ -x "$(command -v jq)" ]; then
 	# Switch back to the original i3 workspace
-	i3-msg "workspace $C"
+	i3-msg "workspace $C" &> /dev/null
 fi
 
-# Wait to let displays settle and change wallpaper
-sleep 3
-feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg
+# Fix wallpaper
+/home/anthony/.config/scripts/set-background.sh &> /dev/null
