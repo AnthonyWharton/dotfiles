@@ -17,7 +17,7 @@ trayer                      \
 	--height 24         \
 	--SetDockType false \
 	--transparent true  \
-	--tint 0x222222     \
-	--alpha 0           \
+	--tint 0xbb222222   \
+	--alpha 68          \
 	--expand false      \
 	--monitor primary   \
