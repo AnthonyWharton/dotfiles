@@ -1,0 +1,9 @@
+[Unit]
+Description=Change background wallpaper periodically
+
+[Timer]
+# Repeat every 0 plus multiple of 10 minutes
+OnCalendar=*-*-* *:0/10:00
+
+[Install]
+WantedBy=timers.target

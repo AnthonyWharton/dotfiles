@@ -1,0 +1,7 @@
+[Unit]
+Description=Changes background wallpaper
+
+[Service]
+Type=oneshot
+Environment=DISPLAY=:0
+ExecStart=/home/anthony/.config/scripts/set-background.sh
