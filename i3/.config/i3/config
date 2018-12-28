@@ -266,7 +266,7 @@ exec --no-startup-id compton -b --config ~/.config/compton/config.cfg
 exec_always --no-startup-id ~/.config/scripts/set-background.sh
 
 ## Start redshift
-exec --no-startup-id redshift &
+exec --no-startup-id redshift -l 51.46:-2.60 &
 
 ######
 #### Graveyard options that could be useful someday
