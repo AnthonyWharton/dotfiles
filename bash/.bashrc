@@ -55,21 +55,8 @@ alias starwars='telnet towel.blinkenlights.nl'
 alias dc='sudo killall openvpn'
 alias rc='sudo openvpn --config /etc/openvpn/UltraHorizon-EC-Auth.conf --writepid /run/openvpn/openvpn.pid --log /var/log/openvpn.log &'
 
-#####
-
-# Overloading SSH with custom endpoint to bluecrystal
-function ssh() {
-    case $1 in
-        bluecrystalp3 ) ssh snowy -t "ssh bluecrystalp3" ;;
-        bluecrystalp4 ) ssh snowy -t "ssh bluecrystalp4" ;;
-        * ) command ssh $@ ;;
-    esac
-}
-
 # Connect to SSH Agent
 SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
-
-#####
 
 ################################################################################
 ### From Ubuntu's .bashrc (Edited)                                           ###

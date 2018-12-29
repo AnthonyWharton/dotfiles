@@ -113,36 +113,18 @@ alias starwars='telnet towel.blinkenlights.nl'
 alias dc='sudo killall openvpn'
 alias rc='sudo openvpn --config /etc/openvpn/UltraHorizon.ovpn --log /var/log/openvpn.log &'
 
-# Goodbye XPD 13 9350 (QHD) wherever you may be...
+# To Do: Someday turn this into a nice wrapper function/utility
+alias monitor-reset='xrandr --output eDP1 --auto --output DP1 --off; ~/.config/scripts/set-background.sh'
+alias monitor-1080p-above='xrandr --output eDP1 --mode 1920x1080 --pos 0x1080 --output DP1 --mode 1920x1080 --pos 0x0; ~/.config/scripts/set-background.sh'
 
-# To Do: Someday turn this into a nice wrapper function
-alias monitor-reset='xrandr --output eDP1 --auto --output DP1 --off; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
-alias monitor-1080p-above='xrandr --output eDP1 --mode 1920x1080 --pos 0x1080 --output DP1 --mode 1920x1080 --pos 0x0; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
-# alias monitor-1080p-above2='xrandr --fb 3200x2880 --output eDP-1 --mode 3200x1800 --pos 0x1080 --output DP-1 --mode 1920x1080 --scale 1x1 --pos 640x0; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
-# alias monitor-1080p-right='xrandr --fb 6080x1800 --output eDP-1 --mode 3200x1800 --pos 0x0 --output DP-1 --mode 1920x1080 --pos 3200x90 --scale-from 2880x1620; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
-# alias monitor-1080p-right2='xrandr --fb 5120x1800 --output eDP-1 --mode 3200x1800 --pos 0x0 --output DP-1 --mode 1920x1080 --pos 3200x640 --scale 1x1; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
-# alias monitor-1080p-left='xrandr --fb 6080x1800 --output eDP-1 --mode 3200x1800 --pos 2880x0 --output DP-1 --mode 1920x1080 --pos 0x90 --scale-from 2880x1620; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
-# alias monitor-1080p-left2='xrandr --fb 5120x1800 --output eDP-1 --mode 3200x1800 --pos 1920x0 --output DP-1 --mode 1920x1080 --pos 0x640 --scale 1x1; feh --bg-fill ~/Pictures/Wallpapers/Mountain\ Sunset.jpg'
-
-#####
-
-# Overloading sudo
+# Overloading sudo such that `sudo suu` will open a shell with the same
+# environment variables as the user shell, and have the same home directory.
 function sudo() {
-    case $1 in
-        su) command sudo -E -H -s zsh ;;
-        * ) command sudo $@ ;;
-    esac
-}
-
-#####
-
-# Overloading SSH with custom endpoint to bluecrystal
-function ssh() {
-    case $1 in
-        bluecrystalp3 ) ssh snowy -t "ssh bluecrystalp3" ;;
-        bluecrystalp4 ) ssh snowy -t "ssh bluecrystalp4" ;;
-        * ) command ssh $@ ;;
-    esac
+	if [[ $# == 1 && "$1" == "suu" ]]; then
+		command sudo -E -H -s zsh
+	else
+		command sudo $@
+	fi
 }
 
 #####
@@ -154,27 +136,26 @@ export QT_QPA_PLATFORMTHEME=gtk2
 
 # Go up n directories. Usage: user:~$ up n
 up() {
-  local d=""
-  limit=$1
-  for ((i=1 ; i <= limit ; i++))
-    do
-      d=$d/..
-    done
-  d=$(echo $d | sed 's/^\///')
-  if [ -z "$d" ]; then
-    d=..
-  fi
-  cd $d
+	local d=""
+	limit=$1
+	for ((i=1 ; i <= limit ; i++)); do
+		d=$d/..
+	done
+	d=$(echo $d | sed 's/^\///')
+	if [ -z "$d" ]; then
+		d=..
+	fi
+	cd $d
 }
 
 #####
 
 # Colour man pages nicely.
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;31m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;33m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;32m'
+export LESS_TERMCAP_mb=$'\e[01;31m'
+export LESS_TERMCAP_md=$'\e[01;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;44;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;35m'
 
