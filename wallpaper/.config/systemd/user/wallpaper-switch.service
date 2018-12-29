@@ -5,3 +5,4 @@ Description=Changes background wallpaper
 Type=oneshot
 Environment=DISPLAY=:0
 ExecStart=/home/anthony/.config/scripts/set-background.sh
+ExecStartPost=/home/anthony/.config/scripts/launch-tray.sh
