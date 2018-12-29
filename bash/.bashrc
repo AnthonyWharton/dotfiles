@@ -50,9 +50,6 @@ alias tm='~/Documents/Misc/Scripts/tmux-session.sh'
 
 alias work='cd ~/Documents/University-Work/Year-4/'
 
-alias ark='ssh -X -i ~/.ssh/privateArk -p 9669 anthony@ark.itgr.uk'
-alias arks='sftp -i ~/.ssh/privateArk -P 9669 anthony@ark.itgr.uk'
-
 alias starwars='telnet towel.blinkenlights.nl'
 
 alias dc='sudo killall openvpn'
@@ -78,7 +75,7 @@ SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 ### From Ubuntu's .bashrc (Edited)                                           ###
 ################################################################################
 
-# Check the window size after each command and, if necessary, Update the values 
+# Check the window size after each command and, if necessary, Update the values
 # of LINES and COLUMNS.
 shopt -s checkwinsize
 
@@ -96,13 +93,13 @@ export PROMPT_COMMAND=__prompt_command  # Func to gen PS1 after CMDs
 
 function __prompt_command() {
   local EXIT="$?"             # This needs to be first
-  PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]' 
+  PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
 
   if [ $EXIT != 0 ]; then
     PS1+='\[\033[01;41m\] $? \[\033[00m\]'      # Add red if exit code non 0
   fi
 
-  PS1+='\n\$ ' 
+  PS1+='\n\$ '
 }
 
 # Enable color support of ls and also add handy aliases
@@ -216,7 +213,7 @@ alias didido='history | grep'
 # This file is in the public domain
 # See: http://www.debian-administration.org/articles/317 for how to write more.
 # Usage: Put "source bash_completion_tmux.sh" into your .bashrc
-_tmux() 
+_tmux()
 {
     local cur prev opts
     COMPREPLY=()

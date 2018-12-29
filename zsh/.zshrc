@@ -108,9 +108,6 @@ alias uh='cd ~/Documents/Projects/UltraHorizon/UH-Net-Android'
 
 alias make='make -j4'
 
-alias ark='ssh -X -i ~/.ssh/privateArk -p 9669 anthony@ark.itgr.uk'
-alias arks='sftp -i ~/.ssh/privateArk -P 9669 anthony@ark.itgr.uk'
-
 alias starwars='telnet towel.blinkenlights.nl'
 
 alias dc='sudo killall openvpn'
