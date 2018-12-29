@@ -1,5 +1,8 @@
 #!/bin/bash
 
+killall -9 stalonetray
+killall -9 trayer
+
 if ! pgrep -x nm-applet; then
 	nm-applet &
 fi
@@ -20,4 +23,4 @@ trayer                      \
 	--tint 0xbb222222   \
 	--alpha 68          \
 	--expand false      \
-	--monitor primary   \
+	--monitor primary &
