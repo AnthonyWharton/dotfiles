@@ -249,7 +249,10 @@ for_window [title="^Android Emulator.*"           ] floating enable
 for_window [class="SshAskpass"] border pixel 0
 no_focus [class="SshAskpass"]
 
-# Stop trayer ever taking foxus
+## Matplotlib output settings
+for_window [class="Matplotlib"] floating enable
+
+## Stop trayer ever taking focus
 no_focus [class="trayer"]
 
 ######
