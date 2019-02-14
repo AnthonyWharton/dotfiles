@@ -65,7 +65,7 @@ if &t_Co >= 256 || has('gui_running')
     hi Operator          ctermbg=NONE ctermfg=214  guibg=NONE    guifg=#F5BB12 cterm=NONE           gui=NONE
     hi Error             ctermbg=NONE ctermfg=203  guibg=NONE    guifg=#F25A55 cterm=reverse        gui=reverse
     hi Identifier        ctermbg=NONE ctermfg=32   guibg=NONE    guifg=#277BD3 cterm=NONE           gui=NONE
-    hi Ignore            ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=NONE           gui=NONE 
+    hi Ignore            ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=NONE           gui=NONE
     hi PreProc           ctermbg=NONE ctermfg=214  guibg=NONE    guifg=#F5BB12 cterm=NONE           gui=NONE
     hi Special           ctermbg=NONE ctermfg=32   guibg=NONE    guifg=#277BD3 cterm=NONE           gui=NONE
     hi Statement         ctermbg=NONE ctermfg=203  guibg=NONE    guifg=#F25A55 cterm=NONE           gui=NONE
@@ -76,7 +76,7 @@ if &t_Co >= 256 || has('gui_running')
     hi Underlined        ctermbg=NONE ctermfg=173  guibg=NONE    guifg=#DE935F cterm=underline      gui=underline
 
     hi LineNr            ctermbg=234  ctermfg=242  guibg=#1C1C1C guifg=#6C6C6C cterm=NONE           gui=NONE
-    hi NonText           ctermbg=NONE ctermfg=152  guibg=NONE    guifg=#BFD7DB cterm=NONE           gui=NONE
+    hi NonText           ctermbg=NONE ctermfg=237  guibg=NONE    guifg=#3A3A3A cterm=NONE           gui=NONE
 
     hi Pmenu             ctermbg=59   ctermfg=145  guibg=#373B41 guifg=#BDBDBD cterm=NONE           gui=NONE
     hi PmenuSbar         ctermbg=59   ctermfg=NONE guibg=#373B41 guifg=NONE    cterm=NONE           gui=NONE
@@ -113,7 +113,7 @@ if &t_Co >= 256 || has('gui_running')
     hi WildMenu          ctermbg=16   ctermfg=117  guibg=#191B1F guifg=#7FD6FA cterm=NONE           gui=NONE
 
     hi Function          ctermbg=NONE ctermfg=220  guibg=NONE    guifg=#FFC620 cterm=NONE           gui=NONE
-    hi SpecialKey        ctermbg=NONE ctermfg=59   guibg=NONE    guifg=#404449 cterm=NONE           gui=NONE
+    hi SpecialKey        ctermbg=NONE ctermfg=237  guibg=NONE    guifg=#3A3A3A cterm=NONE           gui=NONE
     hi Title             ctermbg=NONE ctermfg=32   guibg=NONE    guifg=#277BD3 cterm=bold           gui=bold
 
     hi DiffAdd           ctermbg=16   ctermfg=NONE guibg=#24272D guifg=NONE    cterm=NONE           gui=NONE

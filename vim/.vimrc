@@ -1,44 +1,128 @@
-" Powerline
-" -
-let g:powerline_pycmd = "py3" " Use Python 3
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
-set rtp+=/usr/lib/python3.6/site-packages/powerline/bindings/vim
-set laststatus=2         " Always show status line
-set t_Co=256             " Use 256 colours
-set encoding=UTF-8
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Vim Settings
+""" ============
+""" Stock settings, bindings, macro's etc.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Hack to allow Alt key usage
-let c='a'
-while c <= 'z'
-    exec "set <A-".c.">=\e".c
-    exec "imap \e".c." <A-".c.">"
-    let c = nr2char(1+char2nr(c))
-endw
-let c='1'
-while c <= '9'
-    exec "set <A-".c.">=\e".c
-    exec "imap \e".c." <A-".c.">"
-    let c = nr2char(1+char2nr(c))
-endw
-set timeout ttimeoutlen=50
+" Indentation
+set autoindent           " Use auto indentation
+set copyindent           " Copy previous indentation when auto indenting
+set noexpandtab          " Use soft tabs (expand tab -> spaces)
+set tabstop=8            " Use 8 spaces for soft tabs
+set shiftwidth=8         " Use 8 spaces for reindenation
+set softtabstop=8        " Use 8 spaces in insert mode
+set smarttab             " Insert tabs on the start of line according to shiftwidth not tabstop
+
+" Undo & History
+set history=1000         " Remember more commands and search history
+set undolevels=1000      " MOAR levels of undo
+set visualbell           " Don't beep
+set noerrorbells         " Don't beep
+
+" Who needs swap files and backups? Not me!
+set nobackup
+set nowb
+set noswapfile
+
+" Search Options
+set ignorecase
+set smartcase            " Ignore case if all lower case, else search is case sensitive
+set hlsearch             " Highlight searched terms
+set incsearch            " Show highlighted terms as you search
+
+" Appearence
+set encoding=UTF-8       " Use UTF-8
+set t_Co=256             " Use 256 colours
+set laststatus=2         " Always show status line
+set number               " Line numbers are great
+set title                " Change the terminal's title
+set wildmenu             " Fancy autocompletion
+syntax on                " Use syntax highlighting (assuming terminal has colour support)
+syntax spell toplevel
+colorscheme adventurous
+let &colorcolumn="80,".join(range(100,999),",") " Colour 80 char column and column's >100
+set cursorline
+set list                 " Show whitespace characters, and configure
+set listchars=tab:\|\ ,trail:·,
+
+" Map :W to sudo write
+command W w !sudo tee % > /dev/null
+
+" date string option
+iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
+
+" Misc
+set novisualbell
+set pastetoggle=<F2>     " Paste mode when pressing F2 (disables smart tab do-da's)
+set mouse=a              " We like using the mouse (filthy cretin)
+set scrolloff=100        " Broken Typewriter mode
+
+" " Hack to allow Alt key usage
+" let c='a'
+" while c <= 'z'
+"     exec "set <A-".c.">=\e".c
+"     exec "imap \e".c." <A-".c.">"
+"     let c = nr2char(1+char2nr(c))
+" endw
+" let c='1'
+" while c <= '9'
+"     exec "set <A-".c.">=\e".c
+"     exec "imap \e".c." <A-".c.">"
+"     let c = nr2char(1+char2nr(c))
+" endw
+" set timeout ttimeoutlen=50
+
+" Quicker Tab Shortcuts
+nmap <A-1> 1gt
+nmap <A-2> 2gt
+nmap <A-3> 3gt
+nmap <A-4> 4gt
+nmap <A-5> 5gt
+nmap <A-6> 6gt
+nmap <A-7> 7gt
+nmap <A-8> 8gt
+nmap <A-9> 9gt
+
+" Fix for OpenCL files
+au BufReadPost *.cl set syntax=c
+
+" Strip trailing whitespace on file save
+fun! StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+autocmd BufWritePost * :call StripTrailingWhitespaces()
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Plug Plugin Definitions
+""" =======================
+""" Some are disabled by default assuming that they are not needed on a quick
+""" new installation.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 call plug#begin('~/.vim/vim-plug-plugins')
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
     Plug 'scrooloose/nerdtree'
-    Plug 'lervag/vimtex'
-    Plug 'Valloric/YouCompleteMe'
-    Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-    Plug 'tpope/vim-commentary'
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'airblade/vim-gitgutter'
-    Plug 'junegunn/vim-peekaboo'
-    Plug 'rccoles/vim-markaboo'
+    Plug 'tpope/vim-commentary'
+    Plug 'lervag/vimtex'
     Plug 'inkarkat/vim-spellcheck'    " Spell Checking
     Plug 'vim-scripts/ingo-library'   " Required for Spell Checking
+    " Plug 'Valloric/YouCompleteMe'
+    " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 call plug#end()
 
-" Tree
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" Airline
+let g:airline_theme = "murmur"
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" NERDTree
 let NERDTreeMinimalUI  = 1
 let NERDTreeDirArrows  = 1
 let NERDTreeShowHidden = 1
@@ -58,18 +142,7 @@ autocmd BufWinEnter * NERDTreeMirror
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd TabLeave * if bufname('') =~ "Nerd_tree" | wincmd l | endif
 
-" Quicker Tab Shortcuts
-nmap <A-1> 1gt
-nmap <A-2> 2gt
-nmap <A-3> 3gt
-nmap <A-4> 4gt
-nmap <A-5> 5gt
-nmap <A-6> 6gt
-nmap <A-7> 7gt
-nmap <A-8> 8gt
-nmap <A-9> 9gt
-
-" YCM
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" YCM
 " Don't ask to load config - maybe insecure
 let g:ycm_confirm_extra_conf = 0
 " Allow jump to erros using :lne and :lp
@@ -123,14 +196,11 @@ command! Type        YcmCompleter GetType
 command! Doc         YcmCompleter GetDoc
 command! Fix         YcmCompleter FixIt
 
-" Fix for OpenCL files
-au BufReadPost *.cl set syntax=c
-
-" Latex
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" VimTex
 let g:tex_flavor = 'latex'
 let g:vimtex_latexmk_continuous = 1
 
-" Git good with the code!
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" GitGutter
 let g:gitgutter_terminal_reports_focus=0
 let g:gitgutter_map_keys=0
 set updatetime=100
@@ -144,7 +214,7 @@ highlight link GitGutterChange       Special
 highlight link GitGutterDelete       Tag
 highlight link GitGutterChangeDelete Special
 
-" Git good in the tree!
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" NERDTree-git
 let g:NERDTreeIndicatorMapCustom = {
 	\ "Modified"  : "~",
 	\ "Staged"    : "+",
@@ -158,7 +228,7 @@ let g:NERDTreeIndicatorMapCustom = {
 	\ "Unknown"   : "‽"
 	\ }
 
-" Commenting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" Commentary
 filetype plugin on
 autocmd FileType c setlocal commentstring=//\ %s
 autocmd FileType h setlocal commentstring=//\ %s
@@ -168,19 +238,10 @@ nmap <silent> <C-_> gcc
 imap <silent> <C-_> <C-o>gcc
 vmap <silent> <C-_> gc
 
-" Strip trailing whitespace on file save
-fun! StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
-autocmd BufWritePost * :call StripTrailingWhitespaces()
-
-" Peekaboo for paste
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" Peekaboo
 let g:peekaboo_window = 'vert bel 50new'
 
-" Markaboo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" Markaboo
 let g:markaboo_window = 'vert bel 50new'
 let g:markaboo_enable_special = 1
 let g:markaboo_marks_special = '."'''
@@ -192,7 +253,7 @@ endfunction
 
 command! ClearQuickfixList call ClearQuickfixList()
 
-" Spellcheck
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" Spellcheck
 autocmd FileType tex setlocal spell spelllang=en_gb
 autocmd FileType txt setlocal spell spelllang=en_gb
 autocmd FileType md setlocal spell spelllang=en_gb
@@ -204,51 +265,3 @@ let g:SpellCheck_DefineQuickfixMappings = 0
 " set t_RV=
 " autocmd VimEnter * redraw!
 
-" Indentation
-set autoindent           " Use auto indentation
-set copyindent           " Copy previous indentation when auto indenting
-set noexpandtab          " Use soft tabs (expand tab -> spaces)
-set tabstop=8            " Use 4 spaces for soft tabs
-set shiftwidth=8         " Use 4 spaces for reindenation
-set softtabstop=8        " Use 4 spaces in insert mode
-set smarttab             " Insert tabs on the start of line according to shiftwidth not tabstop
-
-" Undo & History
-set history=1000         " Remember more commands and search history
-set undolevels=1000      " MOAR levels of undo
-set visualbell           " Don't beep
-set noerrorbells         " Don't beep
-
-" Who needs swap files and backups? Not me!
-set nobackup
-set nowb
-set noswapfile
-
-" Search
-set ignorecase
-set smartcase            " Ignore case if all lower case, else search is case sensitive
-set hlsearch             " Highlight searched terms
-set incsearch            " Show highlighted terms as you search
-
-" Appearence
-set number               " Line numbers are great
-set title                " Change the terminal's title
-set wildmenu             " Fancy autocompletion
-syntax on                " Use syntax highlighting (assuming terminal has colour support)
-syntax spell toplevel
-colorscheme adventurous
-" 80 Character ENFORCING
-let &colorcolumn="80,".join(range(100,999),",")
-set cursorline
-
-" Map :W to sudo write
-command W w !sudo tee % > /dev/null
-
-" date string option
-iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
-
-" Misc
-set novisualbell
-set pastetoggle=<F2>     " Paste mode when pressing F2 (disables smart tab do-da's)
-set mouse=a              " We like using the mouse (filthy cretin)
-set scrolloff=100        " Broken Typewriter mode
