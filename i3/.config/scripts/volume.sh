@@ -2,9 +2,12 @@
 # Changes the system's volume level to the next 5% increment.
 # Not the most general implementation, for use with my personal i3 config.
 
-VOL_MAX=$(pactl list sinks | grep "^[[:space:]]Base Volume:" | sed -E -e 's/^[^0-9]*([0-9]*).*$/\1/' | head -n 1)
-VOL_CUR=$(pactl list sinks | grep "^[[:space:]]Volume:"      | sed -E -e 's/^[^0-9]*([0-9]*).*$/\1/' | head -n 1)
-IS_MUTE=$(pactl list sinks | grep "^[[:space:]]Mute:"        | sed -E -e 's/.*(yes|no).*/\1/' | head -n 1)
+# Get's the default sink information only
+SINK=$(pacmd list-sinks | awk '/* index/{print;flag=1;next}/index/{flag=0}flag')
+SINK_ID=$(echo "$SINK" | grep "* index:"                 | sed -E -e 's/^[^0-9]*([0-9]*).*$/\1/')
+VOL_MAX=$(echo "$SINK" | grep "^[[:space:]]base volume:" | sed -E -e 's/^[^0-9]*([0-9]*).*$/\1/')
+VOL_CUR=$(echo "$SINK" | grep "^[[:space:]]volume:"      | sed -E -e 's/^[^0-9]*([0-9]*).*$/\1/')
+IS_MUTE=$(echo "$SINK" | grep "^[[:space:]]muted:"       | sed -E -e 's/.*(yes|no).*/\1/')
 VOL_STP=$((VOL_MAX / 20 + 1))
 
 # Finds the higher and lower values for 5% volume increments around the current
@@ -23,7 +26,7 @@ function volume_up {
         if [[ "$IS_MUTE" = "yes" ]]; then
             toggle_mute
         fi
-	pactl set-sink-volume 0 +$((I_H - VOL_CUR))
+	pactl set-sink-volume $SINK_ID +$((I_H - VOL_CUR))
     fi
 }
 
@@ -34,15 +37,15 @@ function volume_down {
             toggle_mute
         fi
         if [[ $VOL_CUR -eq $I_L ]]; then
-            pactl set-sink-volume 0 -$VOL_STP
+            pactl set-sink-volume $SINK_ID -$VOL_STP
 	else
-            pactl set-sink-volume 0 -$((VOL_CUR - I_L))
+            pactl set-sink-volume $SINK_ID -$((VOL_CUR - I_L))
 	fi
     fi
 }
 
 function toggle_mute {
-    pactl set-sink-mute 0 toggle
+    pactl set-sink-mute $SINK_ID toggle
 }
 
 function print_help {
