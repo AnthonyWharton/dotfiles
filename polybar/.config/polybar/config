@@ -195,13 +195,7 @@ format-underline = ${colors.primary}
 ;=============================================================================;
 
 [module/volume]
-type = internal/alsa
-
-master-mixer = Master
-;speaker-mixer = Speaker
-;headphone-mixer = Headphone
-;headphone-id = 9
-;mapping = true
+type = internal/pulseaudio
 
 format-volume = <label-volume>
 format-volume-underline = ${colors.primary}
@@ -213,6 +207,7 @@ label-volume-foreground = ${colors.foreground}
 
 label-muted = "  "
 format-muted-foreground = ${colors.foreground}
+
 
 ;=============================================================================;
 
