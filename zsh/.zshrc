@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/bin:/usr/local/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH=/usr/share/oh-my-zsh
@@ -103,10 +103,10 @@ alias gitFUCK='git reset --hard HEAD~'
 
 alias tm='~/Documents/Misc/Scripts/tmux-session.sh'
 
-alias work='cd ~/Documents/University-Work/Year-4'
+alias work='cd ~/Documents/University-Work/Year-4/Project'
 alias uh='cd ~/Documents/Projects/UltraHorizon/UH-Net-Android'
 
-alias make='make -j4'
+# alias make='make -j4'
 
 alias starwars='telnet towel.blinkenlights.nl'
 
@@ -131,7 +131,8 @@ function sudo() {
 
 # Some EXPORT variables
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-export PATH=$PATH:~/Documents/University-Work/Year-3/Intro-To-HPC/bcsubmit/
+export PATH="$PATH:/home/anthony/Documents/University-Work/Year-3/Intro-To-HPC/bcsubmit"
+export PATH="$PATH:/home/anthony/Documents/University-Work/Year-4/Project/souper/build"
 export QT_QPA_PLATFORMTHEME=gtk2
 
 # Go up n directories. Usage: user:~$ up n
