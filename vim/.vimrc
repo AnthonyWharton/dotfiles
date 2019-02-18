@@ -48,29 +48,14 @@ set listchars=tab:\|\ ,trail:·,
 " Map :W to sudo write
 command W w !sudo tee % > /dev/null
 
-" date string option
-iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
+" Completely useful date string
+iab xdate <c-r>=strftime("%d-%m-%y %H:%M:%S")<cr>
 
 " Misc
 set novisualbell
 set pastetoggle=<F2>     " Paste mode when pressing F2 (disables smart tab do-da's)
 set mouse=a              " We like using the mouse (filthy cretin)
 set scrolloff=100        " Broken Typewriter mode
-
-" " Hack to allow Alt key usage
-" let c='a'
-" while c <= 'z'
-"     exec "set <A-".c.">=\e".c
-"     exec "imap \e".c." <A-".c.">"
-"     let c = nr2char(1+char2nr(c))
-" endw
-" let c='1'
-" while c <= '9'
-"     exec "set <A-".c.">=\e".c
-"     exec "imap \e".c." <A-".c.">"
-"     let c = nr2char(1+char2nr(c))
-" endw
-" set timeout ttimeoutlen=50
 
 " Quicker Tab Shortcuts
 nmap <A-1> 1gt
