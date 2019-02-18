@@ -136,11 +136,18 @@ nmap <silent> <A-j>     :wincmd j<CR>
 nmap <silent> <A-h>     :wincmd h<CR>
 nmap <silent> <A-l>     :wincmd l<CR>
 map  <C-\>              :NERDTreeToggle<CR>
-autocmd VimEnter * NERDTree  " Autostart NERDTree
-autocmd VimEnter * wincmd p  " And then focus on file
+autocmd VimEnter * call OpenNERDTree()  " Autostart NERDTree
+autocmd VimEnter * wincmd p             " And then focus on file
 autocmd BufWinEnter * NERDTreeMirror
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd TabLeave * if bufname('') =~ "Nerd_tree" | wincmd l | endif
+
+" Autostarts NERDTree if the window is wide enough
+function OpenNERDTree()
+	if winwidth(0) > 120
+		NERDTree
+	endif
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" YCM
 " Don't ask to load config - maybe insecure
