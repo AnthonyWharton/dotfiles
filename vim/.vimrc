@@ -163,13 +163,13 @@ let g:ycm_goto_buffer_command="new-tab"
 " hi YcmWarningSign guifg=#FD971F guibg=#232526
 
 " Lint file on save
-autocmd BufWritePost *.c,*.h,*.cpp,*.py call RunCheck()
+" autocmd BufWritePost *.c,*.h,*.cpp,*.py call RunCheck()
 
-function RunCheck()
-	YcmForceCompileAndDiagnostics
-	YcmDiags
-	if (youcompleteme#GetErrorCount() == 0 && youcompleteme#GetWarningCount() == 0) | lclose | else | ll | endif
-endfunction
+" function RunCheck()
+" 	YcmForceCompileAndDiagnostics
+" 	YcmDiags
+" 	if (youcompleteme#GetErrorCount() == 0 && youcompleteme#GetWarningCount() == 0) | lclose | else | ll | endif
+" endfunction
 
 let g:ycm_open_loclist_on_ycm_diags=1
 
