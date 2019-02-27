@@ -1,0 +1,19 @@
+### Additional things to make bash a bit nicer! TODO: Requires neatening up...
+
+# Changes how arrow key history works, instead of going up and down one
+# instruction at a time in history, it uses what has already been typed on the
+# command line as a search prefix.
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# Slightly less verbose tab auto-completion to the default.
+TAB: menu-complete
+"\e[Z": menu-complete-backward
+
+set menu-complete-display-prefix on
+set show-all-if-ambiguous on
+set completion-ignore-case on
+set completion-map-case on
+
+set colored-stats on
+set colored-completion-prefix on
