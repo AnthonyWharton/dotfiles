@@ -130,10 +130,15 @@ function sudo() {
 #####
 
 # Some EXPORT variables
+export QT_QPA_PLATFORMTHEME=gtk2
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
 export PATH="$PATH:/home/anthony/Documents/University-Work/Year-3/Intro-To-HPC/bcsubmit"
 export PATH="$PATH:/home/anthony/Documents/University-Work/Year-4/Project/souper/build"
-export QT_QPA_PLATFORMTHEME=gtk2
+
+export NANOBENCH_HOME="/home/anthony/Documents/University-Work/Year-4/Project/nanoBench"
+export NANOBENCH_CFG="$NANOBENCH_HOME/configs/cfg_Skylake_common.txt"
+export PATH="$PATH:$NANOBENCH_HOME"
 
 # Go up n directories. Usage: user:~$ up n
 up() {
