@@ -1,5 +1,8 @@
 ### Additional things to make bash a bit nicer! TODO: Requires neatening up...
 
+# Include system default inputrc settings
+$include /etc/inputrc
+
 # Changes how arrow key history works, instead of going up and down one
 # instruction at a time in history, it uses what has already been typed on the
 # command line as a search prefix.
