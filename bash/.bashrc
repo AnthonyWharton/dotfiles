@@ -15,7 +15,7 @@ export BASH_IT="$HOME/.bashit"
 # Lock and Load a custom theme file.
 # Leave empty to disable theming.
 # location /.bash_it/themes/
-export BASH_IT_THEME='powerline-multiline'
+export BASH_IT_THEME='powerline-custom'
 
 # Theme settings
 # TODO: Fork theme and make own version, as I don't quite have the control I
