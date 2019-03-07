@@ -20,8 +20,8 @@ export BASH_IT_THEME='powerline-custom'
 # Theme settings
 # TODO: Fork theme and make own version, as I don't quite have the control I
 #       want to implement some changes from just config.
-POWERLINE_LEFT_PROMPT="user_info cwd python_venv"
-POWERLINE_RIGHT_PROMPT="in_vim scm clock battery"
+POWERLINE_LEFT_PROMPT="user_info python_venv cwd"
+POWERLINE_RIGHT_PROMPT="in_vim scm battery clock"
 
 PROMPT_CHAR=${POWERLINE_PROMPT_CHAR:="$"}
 THEME_CLOCK_FORMAT="%H:%M:%S %d-%m-%Y"
