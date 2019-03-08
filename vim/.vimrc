@@ -264,10 +264,11 @@ endfunction
 command! ClearQuickfixList call ClearQuickfixList()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" Spellcheck
-autocmd FileType tex setlocal spell spelllang=en_gb
-autocmd FileType txt setlocal spell spelllang=en_gb
-autocmd FileType md setlocal spell spelllang=en_gb
-autocmd BufWritePost *.txt,*.tex,*.md call ClearQuickfixList() | SpellCheck! | cw
+autocmd BufRead,BufNewFile *.tex setlocal spell spelllang=en_gb
+autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=en_gb
+autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_gb
+autocmd BufRead,BufNewFile COMMIT_EDITMSG setlocal spell spelllang=en_gb
+autocmd BufWritePost *.txt,*.tex,*.md,COMMIT_EDITMSG call ClearQuickfixList() | SpellCheck! | cw
 let g:SpellCheck_DefineAuxiliaryCommands = 0
 let g:SpellCheck_DefineQuickfixMappings = 0
 
