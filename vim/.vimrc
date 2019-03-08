@@ -267,7 +267,7 @@ command! ClearQuickfixList call ClearQuickfixList()
 autocmd FileType tex setlocal spell spelllang=en_gb
 autocmd FileType txt setlocal spell spelllang=en_gb
 autocmd FileType md setlocal spell spelllang=en_gb
-autocmd BufWritePost *.txt,*.tex,*.md | call ClearQuickfixList() | SpellCheck! | cw
+autocmd BufWritePost *.txt,*.tex,*.md call ClearQuickfixList() | SpellCheck! | cw
 let g:SpellCheck_DefineAuxiliaryCommands = 0
 let g:SpellCheck_DefineQuickfixMappings = 0
 
