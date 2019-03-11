@@ -1,3 +1,4 @@
 [submodule "bash/.bashit"]
 	path = bash/.bashit
 	url = git@github.com:AnthonyWharton/bash-it.git
+	branch = master
