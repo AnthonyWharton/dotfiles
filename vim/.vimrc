@@ -208,7 +208,20 @@ command! Fix         YcmCompleter FixIt
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" VimTex
 let g:tex_flavor = 'latex'
-let g:vimtex_latexmk_continuous = 1
+let g:vimtex_compiler_latexmk = {
+    \ 'backend' : 'process',
+    \ 'background' : 1,
+    \ 'build_dir' : 'latexmk-files',
+    \ 'callback' : 1,
+    \ 'continuous' : 1,
+    \ 'executable' : 'latexmk',
+    \ 'options' : [
+    \   '-verbose',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \ ],
+    \}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" GitGutter
 let g:gitgutter_terminal_reports_focus=0
