@@ -31,7 +31,7 @@ THEME_CLOCK_FORMAT="%H:%M:%S %d-%m-%Y"
 # export BASH_IT_REMOTE='bash-it'
 
 # Your place for hosting Git repos. I use this for private repos.
-export GIT_HOSTING='git@git.domain.com'
+# export GIT_HOSTING='git@git.domain.com'
 
 # Don't check mail when opening terminal.
 # unset MAILCHECK
@@ -154,8 +154,8 @@ export NANOBENCH_HOME="/home/anthony/Documents/University-Work/Year-4/Project/na
 export NANOBENCH_CFG="$NANOBENCH_HOME/configs/cfg_Skylake_common.txt"
 export PATH="$PATH:$NANOBENCH_HOME"
 
-# Connect to SSH Agent
-SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+# Connect to SSH Agent - provided by user systemd service
+# SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
 # User configuration
 export MANPATH="/usr/local/man:$MANPATH"
