@@ -5,6 +5,7 @@
 ##  - https://i3wm.org/docs/userguide.html                                   ##
 ##  - https://github.com/Airblader/i3                                        ##
 ###############################################################################
+# i3 config file (v4)
 
 ######
 #### General Options and Bindings
@@ -16,7 +17,7 @@ set $mod Mod4
 ## Font Selection
 font pango:SauceCodePro Nerd Font 14
 
-## Use Mouse+$mod to drag floating windows to their wanted position
+## Use $mod+Mouse Click and drag to move floating windows
 floating_modifier $mod
 
 ## Start a terminal
@@ -41,10 +42,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 ## Split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+h split horizontal
 
 ## Split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+v split vertical
 
 ## Enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -101,26 +102,36 @@ bar {
 	mode dock
 }
 
+# bar {
+# 	output primary
+# 	i3bar_command ~/.config/scripts/launch-tray.sh
+# 	mode dock
+# }
+
 ######
 #### Colour Options
 ######
 
-## Base Colours
-set $border-color           #7fb800
-set $inactive-border-color  #2f343f
-set $bg-color               #2f343f
-set $inactive-bg-color      #444444
-set $text-color             #f3f4f5
-set $inactive-text-color    #676e7d
-set $urgent-bg-color        #e53935
+## Colours
+set $cl-act       #7fb800
+set $cl-foc       #3f444f
+set $cl-inact     #2f343f
+set $cl-urg       #e53935
+set $cl-txt-act   #f3f4f5
+set $cl-txt-foc   #777e8d
+set $cl-txt-inact #676e7d
+set $cl-bg        #2a2929
+set $cl-ind       #07537d
 
 ## Colour Settings
 ## Key:
-## window colors        <border> <background>           <text>               <indicator>            <child border>
-client.focused          #0f0     $border-color          $text-color          $border-color          $border-color
-client.unfocused        #0f0     $inactive-border-color $inactive-text-color $inactive-border-color $inactive-border-color
-client.focused_inactive #0f0     $inactive-border-color $inactive-bg-color   $inactive-border-color $inactive-border-color
-client.urgent           #0f0     $urgent-bg-color       $urgent-bg-color     $urgent-bg-color       $urgent-bg-color
+## window colors        <bdr.>   <bg.>     <text>        <ind.>  <chld bdr.>
+client.focused          $cl-act  $cl-act   $cl-txt-act   $cl-ind $cl-act
+client.focused_inactive $cl-foc  $cl-foc   $cl-txt-foc   $cl-ind $cl-foc
+client.unfocused        $cl-foc  $cl-inact $cl-txt-inact $cl-ind $cl-inact
+client.urgent           $cl-foc  $cl-urg   $cl-txt-act   $cl-ind $cl-foc
+client.placeholder      $cl-foc  $cl-foc   $cl-txt-foc   $cl-ind $cl-foc
+client.background       $cl-bg
 
 ######
 #### Workspace Options
@@ -197,8 +208,14 @@ bindsym $mod+Control+Shift+Down  move workspace to output down
 bindsym $mod+Control+Shift+Left  move workspace to output left
 bindsym $mod+Control+Shift+Right move workspace to output right
 
+## Move back an forth between workspaces when repeatdly pressing move key
+workspace_auto_back_and_forth yes
+
+## Take focus when requested
+focus_on_window_activation focus
+
 ######
-#### Appearance & Custom i3 options (from i3-gaps)
+#### Appearance & Custom i3 options from i3-gaps
 ######
 
 # Set the window border size
