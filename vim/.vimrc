@@ -4,40 +4,40 @@
 """ Stock settings, bindings, macro's etc.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Indentation
+"" Indentation
 set autoindent           " Use auto indentation
 set copyindent           " Copy previous indentation when auto indenting
-set noexpandtab          " Use soft tabs (expand tab -> spaces)
+set noexpandtab          " Use hard tabs
 set tabstop=8            " Use 8 spaces for soft tabs
 set shiftwidth=8         " Use 8 spaces for reindenation
 set softtabstop=8        " Use 8 spaces in insert mode
-set smarttab             " Insert tabs on the start of line according to shiftwidth not tabstop
+set smarttab             " Insert tabs at start of line by shiftwidth amount
 
-" Undo & History
+"" Undo & History
 set history=1000         " Remember more commands and search history
 set undolevels=1000      " MOAR levels of undo
 set visualbell           " Don't beep
 set noerrorbells         " Don't beep
 
-" Who needs swap files and backups? Not me!
+"" Who needs swap files and backups? Not me!
 set nobackup
 set nowb
 set noswapfile
 
-" Search Options
+"" Search Options
 set ignorecase
-set smartcase            " Ignore case if all lower case, else search is case sensitive
+set smartcase            " Ignore case only if search term is all lower case
 set hlsearch             " Highlight searched terms
 set incsearch            " Show highlighted terms as you search
 
-" Appearence
+"" Appearence
 set encoding=UTF-8       " Use UTF-8
 set t_Co=256             " Use 256 colours
 set laststatus=2         " Always show status line
 set number               " Line numbers are great
 set title                " Change the terminal's title
 set wildmenu             " Fancy autocompletion
-syntax on                " Use syntax highlighting (assuming terminal has colour support)
+syntax on                " Use syntax highlighting
 syntax spell toplevel
 colorscheme adventurous
 let &colorcolumn="80,".join(range(100,999),",") " Colour 80 char column and column's >100
@@ -45,19 +45,20 @@ set cursorline
 set list                 " Show whitespace characters, and configure
 set listchars=tab:\|\ ,trail:·,
 
-" Map :W to sudo write
+"" Map :W to sudo write
 command W w !sudo tee % > /dev/null
 
-" Completely useful date string
+"" Completely useful date string
 iab xdate <c-r>=strftime("%d-%m-%y %H:%M:%S")<cr>
 
-" Misc
+"" Misc
 set novisualbell
-set pastetoggle=<F2>     " Paste mode when pressing F2 (disables smart tab do-da's)
-set mouse=a              " We like using the mouse (filthy cretin)
-set scrolloff=100        " Broken Typewriter mode
+set pastetoggle=<F2>     " Paste mode when pressing F2
+set mouse=a              " We like using the mouse
+set scrolloff=100        " Dodgy Typewriter mode
+set modeline             " Use modelines
 
-" Quicker Tab Shortcuts
+"" Quicker Tab Shortcuts
 nmap <A-1> 1gt
 nmap <A-2> 2gt
 nmap <A-3> 3gt
@@ -68,10 +69,14 @@ nmap <A-7> 7gt
 nmap <A-8> 8gt
 nmap <A-9> 9gt
 
-" Fix for OpenCL files
-au BufReadPost *.cl set syntax=c
+"" Fixes/Overrides for specific file types:
 
-" Strip trailing whitespace on file save
+" OpenCL syntax highlighting
+au BufReadPost *.cl setlocal syntax=c
+" Set textwidth in latex files
+au BufReadPre,BufNewFile *.tex,*.md setlocal textwidth=79
+
+"" Strip trailing whitespace on file save
 fun! StripTrailingWhitespaces()
     let l = line(".")
     let c = col(".")
@@ -98,7 +103,7 @@ call plug#begin('~/.vim/vim-plug-plugins')
     Plug 'lervag/vimtex'
     Plug 'inkarkat/vim-spellcheck'    " Spell Checking
     Plug 'vim-scripts/ingo-library'   " Required for Spell Checking
-    " Plug 'Valloric/YouCompleteMe'
+    Plug 'Valloric/YouCompleteMe'
     " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 call plug#end()
 
@@ -153,51 +158,53 @@ function OpenNERDTree()
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" YCM
-" Don't ask to load config - maybe insecure
-let g:ycm_confirm_extra_conf = 0
-" Allow jump to erros using :lne and :lp
-let g:ycm_always_populate_location_list = 1
-" Allow completion from system preprocessor macros
-let g:ycm_collect_identifiers_from_tags_files = 1
-" More debug
-let g:ycm_log_level = 'debug'
-" Set to python3 explicitly
-let g:ycm_python_binary_path = '/usr/bin/python3'
-let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
-" Set to rust explicitly
+"" Set to python3 explicitly
+" let g:ycm_python_binary_path = '/usr/bin/python3'
+"" Set to python3 explicitly
+" let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
+"" Set to rust explicitly
 let g:ycm_path_rust_src_path = '~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
-" Start completion from the first character
+
+
+"" Start completion from the first character
 let g:ycm_min_num_of_chars_for_completion = 1
-" Don't cache completion items
-let g:ycm_cache_omnifunc = 0
-" Complete syntax keywords
+"" Allow jump to erros using :lne and :lp
+let g:ycm_always_populate_location_list = 1
+"" Open the location list after :YcmDiags
+let g:ycm_open_loclist_on_ycm_diags=1
+"" Allow completion from system preprocessor macros
+let g:ycm_collect_identifiers_from_tags_files = 1
+"" Complete syntax keywords
 let g:ycm_seed_identifiers_with_syntax = 1
-" Let g:ycm_show_diagnostics_ui = 0
-let g:ycm_autoclose_preview_window_after_insertion = 1
-" Open goto commands in a new tab
-let g:ycm_goto_buffer_command="new-tab"
+"" Close drop down when autocompletion is inserted
+" let g:ycm_autoclose_preview_window_after_insertion = 1
+"" Key mappings used to select the first completion string
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
+"" Don't ask to load config - maybe insecure
+" let g:ycm_confirm_extra_conf = 0
+"" Add YCM VimTex integration
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+"" Open goto commands in a split window
+let g:ycm_goto_buffer_command = 'split'
 
-" hi YcmErrorSign guifg=#F92672 guibg=#232526
-" hi YcmWarningSign guifg=#FD971F guibg=#232526
-
-" Lint file on save
+"""" YCM Autocommands
+"" Lint file on save
 " autocmd BufWritePost *.c,*.h,*.cpp,*.py call RunCheck()
-
 " function RunCheck()
 " 	YcmForceCompileAndDiagnostics
 " 	YcmDiags
 " 	if (youcompleteme#GetErrorCount() == 0 && youcompleteme#GetWarningCount() == 0) | lclose | else | ll | endif
 " endfunction
 
-let g:ycm_open_loclist_on_ycm_diags=1
-
-function! s:CustomizeYcmLocationWindow()
-	wincmd p
-endfunction
-
 " autocmd User YcmLocationOpened call s:CustomizeYcmLocationWindow()
+" function! s:CustomizeYcmLocationWindow()
+" 	wincmd p
+" endfunction
 
-" Commands
+"" Commands
 command! Include     YcmCompleter GoToInclude
 command! Declaration YcmCompleter GoToDeclaration
 command! Definition  YcmCompleter GoToDefinition
@@ -253,8 +260,8 @@ let g:NERDTreeIndicatorMapCustom = {
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" Commentary
 filetype plugin on
-autocmd FileType c setlocal commentstring=//\ %s
-autocmd FileType h setlocal commentstring=//\ %s
+autocmd FileType c   setlocal commentstring=//\ %s
+autocmd FileType h   setlocal commentstring=//\ %s
 autocmd FileType cpp setlocal commentstring=//\ %s
 autocmd FileType hpp setlocal commentstring=//\ %s
 nmap <silent> <C-_> gcc
@@ -269,7 +276,7 @@ let g:markaboo_window = 'vert bel 50new'
 let g:markaboo_enable_special = 1
 let g:markaboo_marks_special = '."'''
 
-" Clears the QuickfixLists
+"" Clears the QuickfixLists
 function ClearQuickfixList()
 	call setqflist([])
 endfunction
@@ -277,15 +284,14 @@ endfunction
 command! ClearQuickfixList call ClearQuickfixList()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" Spellcheck
-autocmd BufRead,BufNewFile *.tex setlocal spell spelllang=en_gb
-autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=en_gb
-autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_gb
-autocmd BufRead,BufNewFile COMMIT_EDITMSG setlocal spell spelllang=en_gb
-autocmd BufWritePost *.txt,*.tex,*.md,COMMIT_EDITMSG call ClearQuickfixList() | SpellCheck! | cw
+au BufRead,BufNewFile COMMIT_EDITMSG,*.tex,*.txt,*.md
+	\ setlocal spell spelllang=en_gb
+au BufWritePost *.txt,*.tex,*.md,COMMIT_EDITMSG
+	\ call ClearQuickfixList() | SpellCheck! | cw
 let g:SpellCheck_DefineAuxiliaryCommands = 0
 let g:SpellCheck_DefineQuickfixMappings = 0
 
-" I've now pasted so many of @RcColes' things that I need fixes for the fixes
+"" I've now pasted so many of @RcColes' things that I need fixes for the fixes
 " set t_RV=
 " autocmd VimEnter * redraw!
 
