@@ -73,8 +73,15 @@ nmap <A-9> 9gt
 
 " OpenCL syntax highlighting
 au BufReadPost *.cl setlocal syntax=c
-" Set textwidth in latex files
-au BufReadPre,BufNewFile *.tex,*.md setlocal textwidth=79
+" Latex files
+au BufReadPre,BufNewFile *.tex
+	\ setlocal textwidth=79 expandtab tabstop=2 shiftwidth=2 softtabstop=2
+" Markdown files
+au BufReadPre,BufNewFile *.md
+	\ setlocal textwidth=79 expandtab tabstop=4 shiftwidth=4 softtabstop=4
+" Python files
+au BufReadPre,BufNewFile *.py
+	\ setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 "" Strip trailing whitespace on file save
 fun! StripTrailingWhitespaces()
