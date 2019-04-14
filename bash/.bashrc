@@ -99,12 +99,12 @@ alias didido='history | grep'
 ###############################################################################
 ### CUSTOM ALIASES
 
-alias ll='ls -lah'
-alias lo='ls -oh'
-alias lh='ls -lh'
-alias sl='ls'
-alias l='ls'
-alias s='ls'
+alias ll='ls -lah --group-directories-first'
+alias lo='ls -oh --group-directories-first'
+alias lh='ls -lh --group-directories-first'
+alias sl='ls --group-directories-first'
+alias l='ls --group-directories-first'
+alias s='ls --group-directories-first'
 
 alias mkdir='mkdir -pv'
 alias mv='mv -iv'
@@ -167,11 +167,10 @@ export EDITOR='vim'
 export QT_QPA_PLATFORMTHEME=gtk2
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-  alias ls='ls --color=auto'
+  alias ls='ls --color=auto --group-directories-first'
   alias dir='dir --color=auto'
   alias vdir='vdir --color=auto'
   alias grep='grep --color=auto'
