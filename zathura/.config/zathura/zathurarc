@@ -1,0 +1,22 @@
+### Zathura Settings
+
+set default-bg "#2F343F"
+set font "SauceCodePro Nerd Font normal 12"
+# set guioptions s
+set page-padding 8
+set page-cache-size 1000
+set first-page-column 1
+set smooth-scroll "true"
+set selection-clipboard clipboard
+
+### Key Mappings
+
+# map [normal] l navigate next
+# map [normal] h navigate previous
+# map [normal] <Left> navigate previous
+# map [normal] <Right> navigate next
+# 
+# map [fullscreen] l navigate next
+# map [fullscreen] h navigate previous
+# map [fullscreen] <Left> navigate previous
+# map [fullscreen] <Right> navigate next
