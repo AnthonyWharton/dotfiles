@@ -113,7 +113,7 @@ label =
 
 [module/cpu]
 type = internal/cpu
-interval = 0.2
+interval = 0.1
 format = <label> <ramp-coreload>
 format-underline = ${colors.primary}
 label = 
