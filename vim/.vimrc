@@ -82,6 +82,9 @@ au BufReadPre,BufNewFile *.md
 " Python files
 au BufReadPre,BufNewFile *.py
 	\ setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+" Cocoapod files
+au BufReadPre,BufNewFile Podfile,*.podspec,*.pod
+	\ setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2 syntax=ruby commentstring=#\ %s
 
 "" Strip trailing whitespace on file save
 fun! StripTrailingWhitespaces()
@@ -107,10 +110,10 @@ call plug#begin('~/.vim/vim-plug-plugins')
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-commentary'
-    Plug 'lervag/vimtex'
+    " Plug 'lervag/vimtex'
     Plug 'inkarkat/vim-spellcheck'    " Spell Checking
     Plug 'vim-scripts/ingo-library'   " Required for Spell Checking
-    Plug 'Valloric/YouCompleteMe'
+    " Plug 'Valloric/YouCompleteMe'
     " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 call plug#end()
 
@@ -124,6 +127,10 @@ let NERDTreeMinimalUI  = 1
 let NERDTreeDirArrows  = 1
 let NERDTreeShowHidden = 1
 let g:NERDTreeWinSize  = 36
+nmap <silent> [1;9A   :wincmd k<CR>
+nmap <silent> [1;9B   :wincmd j<CR>
+nmap <silent> [1;9D   :wincmd h<CR>
+nmap <silent> [1;9C   :wincmd l<CR>
 nmap <silent> <A-Up>    :wincmd k<CR>
 nmap <silent> <A-Down>  :wincmd j<CR>
 nmap <silent> <A-Left>  :wincmd h<CR>
@@ -170,32 +177,32 @@ endfunction
 "" Set to python3 explicitly
 " let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
 "" Set to rust explicitly
-let g:ycm_path_rust_src_path = '~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+" let g:ycm_path_rust_src_path = '~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 
 
 "" Start completion from the first character
-let g:ycm_min_num_of_chars_for_completion = 1
+" let g:ycm_min_num_of_chars_for_completion = 1
 "" Allow jump to erros using :lne and :lp
-let g:ycm_always_populate_location_list = 1
+" let g:ycm_always_populate_location_list = 1
 "" Open the location list after :YcmDiags
-let g:ycm_open_loclist_on_ycm_diags=1
+" let g:ycm_open_loclist_on_ycm_diags=1
 "" Allow completion from system preprocessor macros
-let g:ycm_collect_identifiers_from_tags_files = 1
+" let g:ycm_collect_identifiers_from_tags_files = 1
 "" Complete syntax keywords
-let g:ycm_seed_identifiers_with_syntax = 1
+" let g:ycm_seed_identifiers_with_syntax = 1
 "" Close drop down when autocompletion is inserted
 " let g:ycm_autoclose_preview_window_after_insertion = 1
 "" Key mappings used to select the first completion string
-let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
+" let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
 "" Don't ask to load config - maybe insecure
 " let g:ycm_confirm_extra_conf = 0
 "" Add YCM VimTex integration
-if !exists('g:ycm_semantic_triggers')
-  let g:ycm_semantic_triggers = {}
-endif
-let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+" if !exists('g:ycm_semantic_triggers')
+"   let g:ycm_semantic_triggers = {}
+" endif
+" let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 "" Open goto commands in a split window
-let g:ycm_goto_buffer_command = 'split'
+" let g:ycm_goto_buffer_command = 'split'
 
 """" YCM Autocommands
 "" Lint file on save
@@ -212,13 +219,13 @@ let g:ycm_goto_buffer_command = 'split'
 " endfunction
 
 "" Commands
-command! Include     YcmCompleter GoToInclude
-command! Declaration YcmCompleter GoToDeclaration
-command! Definition  YcmCompleter GoToDefinition
-command! References  YcmCompleter GoToReferences
-command! Type        YcmCompleter GetType
-command! Doc         YcmCompleter GetDoc
-command! Fix         YcmCompleter FixIt
+" command! Include     YcmCompleter GoToInclude
+" command! Declaration YcmCompleter GoToDeclaration
+" command! Definition  YcmCompleter GoToDefinition
+" command! References  YcmCompleter GoToReferences
+" command! Type        YcmCompleter GetType
+" command! Doc         YcmCompleter GetDoc
+" command! Fix         YcmCompleter FixIt
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" VimTex
 let g:tex_flavor = 'latex'
@@ -267,10 +274,11 @@ let g:NERDTreeIndicatorMapCustom = {
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" Commentary
 filetype plugin on
-autocmd FileType c   setlocal commentstring=//\ %s
-autocmd FileType h   setlocal commentstring=//\ %s
-autocmd FileType cpp setlocal commentstring=//\ %s
-autocmd FileType hpp setlocal commentstring=//\ %s
+autocmd FileType c    setlocal commentstring=//\ %s
+autocmd FileType h    setlocal commentstring=//\ %s
+autocmd FileType cpp  setlocal commentstring=//\ %s
+autocmd FileType hpp  setlocal commentstring=//\ %s
+autocmd FileType ruby setlocal commentstring=#\ %s
 nmap <silent> <C-_> gcc
 imap <silent> <C-_> <C-o>gcc
 vmap <silent> <C-_> gc
@@ -291,12 +299,16 @@ endfunction
 command! ClearQuickfixList call ClearQuickfixList()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" Spellcheck
-au BufRead,BufNewFile COMMIT_EDITMSG,*.tex,*.txt,*.md
+au BufRead,BufNewFile *.tex,*.txt,*.md,COMMIT_EDITMSG
 	\ setlocal spell spelllang=en_gb
-au BufWritePost *.txt,*.tex,*.md,COMMIT_EDITMSG
-	\ call ClearQuickfixList() | SpellCheck! | cw
+"au BufWritePost *.txt,*.tex,*.md,COMMIT_EDITMSG
+"	\ call ClearQuickfixList() | SpellCheck! | cw
 let g:SpellCheck_DefineAuxiliaryCommands = 0
 let g:SpellCheck_DefineQuickfixMappings = 0
+
+" Disable for CMakeLists.txt
+au BufRead,BufNewFile CMakeLists.txt
+	\ setlocal nospell
 
 "" I've now pasted so many of @RcColes' things that I need fixes for the fixes
 " set t_RV=
