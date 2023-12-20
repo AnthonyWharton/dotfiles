@@ -75,6 +75,20 @@ export SCM_CHECK=true
 source "$BASH_IT/bash_it.sh"
 
 ###############################################################################
+### CHECK PLATFORM
+
+PLATFORM_CURRENT="$(uname -s)"
+PLATFORM_LINUX=Linux*
+PLATFORM_MAC=Darwin*
+
+# Usage:
+# if [[ ${PLATFORM_CURRENT} =~ ${PLATFORM_LINUX} ]]; then
+# 	echo "On linux!"
+# elif [[ ${PLATFORM_CURRENT} =~ ${PLATFORM_MAC} ]]; then
+# 	echo "On a mac!"
+# fi
+
+###############################################################################
 ### BASH SETUP
 
 shopt -s autocd
@@ -99,12 +113,22 @@ alias didido='history | grep'
 ###############################################################################
 ### CUSTOM ALIASES
 
-alias ll='ls -lah --group-directories-first'
-alias lo='ls -oh --group-directories-first'
-alias lh='ls -lh --group-directories-first'
-alias sl='ls --group-directories-first'
-alias l='ls --group-directories-first'
-alias s='ls --group-directories-first'
+if [[ ${PLATFORM_CURRENT} =~ ${PLATFORM_LINUX} ]]; then
+	alias ll='ls -lah --group-directories-first'
+	alias lo='ls -oh --group-directories-first'
+	alias lh='ls -lh --group-directories-first'
+	alias sl='ls --group-directories-first'
+	alias l='ls --group-directories-first'
+	alias s='ls --group-directories-first'
+elif [[ $PLATFORM_CURRENT =~ ${PLATFORM_MAC} ]]; then
+	alias ll='ls -lah'
+	alias ll='ls -lah'
+	alias lo='ls -oh'
+	alias lh='ls -lh'
+	alias sl='ls'
+	alias l='ls'
+	alias s='ls'
+fi
 
 alias mkdir='mkdir -pv'
 alias mv='mv -iv'
@@ -123,6 +147,7 @@ alias rb='source ~/.bashrc'
 
 alias got='git'
 alias gs='git status'
+alias ghs='command gs'
 
 alias tm='~/Documents/Misc/Scripts/tmux-session.sh'
 
@@ -143,7 +168,14 @@ alias monitor-1080p-above='xrandr --output eDP1 --mode 1920x1080 --pos 0x1080 --
 ###############################################################################
 ### SYSTEM MISC
 
+# Bash Completions (on macOS)
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] \
+	&& . "/usr/local/etc/profile.d/bash_completion.sh"
+
+
 # PATH additions
+export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 export PATH=$PATH:~/.cabal/bin
 export PATH=$PATH:~/texmf/
 export PATH="$PATH:/home/anthony/Documents/University-Work/Year-3/Intro-To-HPC/bcsubmit"
@@ -169,14 +201,16 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-  alias ls='ls --color=auto --group-directories-first'
-  alias dir='dir --color=auto'
-  alias vdir='vdir --color=auto'
-  alias grep='grep --color=auto'
-  alias fgrep='fgrep --color=auto'
-  alias egrep='egrep --color=auto'
+	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+	alias ls='ls --color=auto --group-directories-first'
+	alias dir='dir --color=auto'
+	alias vdir='vdir --color=auto'
+	alias grep='grep --color=auto'
+	alias fgrep='fgrep --color=auto'
+	alias egrep='egrep --color=auto'
 fi
+
+export CLICOLOR=1
 
 # Colour man pages nicely.
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -186,6 +220,9 @@ export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
+
+# Retain coloured command output in less
+export LESS=R
 
 # Colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
@@ -204,7 +241,7 @@ function sudo() {
 }
 
 # Go up n directories. Usage: user:~$ up n
-up() {
+function up() {
 	local d=""
 	limit=$1
 	for ((i=1 ; i <= limit ; i++)); do
