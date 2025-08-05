@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+# Set PATH, MANPATH, etc., for Homebrew.
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Set up GPG Agent
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+
 ###############################################################################
 ### BASH IT THINGS
 
@@ -20,24 +28,15 @@ export BASH_IT_THEME='powerline-custom'
 # Theme settings
 # TODO: Fork theme and make own version, as I don't quite have the control I
 #       want to implement some changes from just config.
+#export POWERLINE_PADDING=3
 POWERLINE_LEFT_PROMPT="user_info python_venv cwd"
 POWERLINE_RIGHT_PROMPT="in_vim scm battery clock"
 
 PROMPT_CHAR=${POWERLINE_PROMPT_CHAR:="$"}
 THEME_CLOCK_FORMAT="%H:%M:%S %d-%m-%Y"
 
-# (Advanced): Change this to the name of your remote repo if you
-# cloned bash-it with a remote other than origin such as `bash-it`.
-# export BASH_IT_REMOTE='bash-it'
-
-# Your place for hosting Git repos. I use this for private repos.
-# export GIT_HOSTING='git@git.domain.com'
-
 # Don't check mail when opening terminal.
-# unset MAILCHECK
-
-# Change this to your console based IRC client of choice.
-# export IRC_CLIENT='irssi'
+unset MAILCHECK
 
 # Set this to the command you use for todo.txt-cli
 export TODO="t"
@@ -91,20 +90,19 @@ PLATFORM_MAC=Darwin*
 ###############################################################################
 ### BASH SETUP
 
-shopt -s autocd
+#shopt -s autocd
 shopt -s cdspell
-shopt -s direxpand dirspell
-shopt -s globstar
-shopt -s histappend
-shopt -s cmdhist
-shopt -s checkwinsize
+#shopt -s direxpand dirspell
+#shopt -s globstar
 
 # Extend History
 export HISTFILESIZE=20000
 export HISTSIZE=10000
 shopt -s histappend
+
 # Combine multiline commands into one in history
 shopt -s cmdhist
+
 # Ignore duplicates, ls without options and builtin commands
 export HISTCONTROL=ignoredups
 export HISTIGNORE="&:ls:[bf]g:exit"
@@ -151,9 +149,6 @@ alias ghs='command gs'
 
 alias tm='~/Documents/Misc/Scripts/tmux-session.sh'
 
-alias work='cd ~/Documents/University-Work/Year-4/Project'
-alias uh='cd ~/Documents/Projects/UltraHorizon/UH-Net-Android'
-
 # alias make='make -j4'
 
 alias starwars='telnet towel.blinkenlights.nl'
@@ -168,11 +163,8 @@ alias monitor-1080p-above='xrandr --output eDP1 --mode 1920x1080 --pos 0x1080 --
 ###############################################################################
 ### SYSTEM MISC
 
-# Bash Completions (on macOS)
-export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] \
-	&& . "/usr/local/etc/profile.d/bash_completion.sh"
-
+# Rust be doing it's thing
+. "$HOME/.cargo/env"
 
 # PATH additions
 export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
